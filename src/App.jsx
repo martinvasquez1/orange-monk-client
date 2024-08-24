@@ -6,7 +6,8 @@ function App() {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
         temporibus?
       </p>
-      <button>Hi</button>
+      <button className="text-black">Hi</button>
+      <button class="btn">Button</button>
     </div>
   );
 }
