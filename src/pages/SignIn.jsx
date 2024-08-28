@@ -20,7 +20,7 @@ export default function SignIn({}) {
       .then((result) => {
         console.log;
         if (result.status === 'success') {
-          localStorage.setItem('jwt-token', result.data.token);
+          localStorage.setItem('jwt', result.data.token);
           setEmail('');
           setPassword('');
           console.log('redirect ');
