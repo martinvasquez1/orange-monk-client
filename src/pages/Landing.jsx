@@ -1,3 +1,10 @@
+import Hero from '../components/Hero';
+
 export default function Landing({}) {
-  return <div>Landing</div>;
+  return (
+    <>
+      <Hero />
+      <div>Another section</div>
+    </>
+  );
 }

@@ -1,15 +1,19 @@
 import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer';
+
+import Sidebar from './Sidebar';
 
 export default function Layout({}) {
   return (
-    <div>
-      <p>Layout</p>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/sign-up">Up</Link>
-      <Link to="/sign-in">In</Link>
-      <Outlet />
+    <div className="drawer">
+      <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
+      <Sidebar />
     </div>
   );
 }
