@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import Sidebar from './Sidebar';
+import Logo from './Logo';
 
 const links = [
   { text: 'Home', to: '/' },
@@ -36,7 +38,11 @@ export default function Navbar() {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">Navbar Title</div>
+          <div className="mx-2 flex-1 px-2">
+            <Link to="/">
+              <Logo />
+            </Link>
+          </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal">
               {links.map((link) => (
