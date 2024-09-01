@@ -59,7 +59,7 @@ export default function Home({}) {
         {groups.map((group) => {
           return (
             <Link
-              to="/app/wizards"
+              to="/app/group/123"
               className="bg-white border-2 border-slate-100 p-4 rounded-xl"
             >
               <h2 className="text-lg">{group.name}</h2>
