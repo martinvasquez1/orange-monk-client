@@ -7,6 +7,7 @@ import Landing from './pages/Landing.jsx';
 import About from './pages/About.jsx';
 import SignUp from './pages/SignUp.jsx';
 import SignIn from './pages/SignIn.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/Home.jsx';
@@ -31,6 +32,7 @@ export default function Router() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={<SignIn />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
