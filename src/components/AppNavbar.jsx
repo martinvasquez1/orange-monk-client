@@ -3,7 +3,7 @@ import Logo from './Logo';
 
 export default function AppNavbar() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar py-4">
       <div className="flex-1">
         <Link to="/app">
           <Logo />
