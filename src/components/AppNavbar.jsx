@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
 export default function AppNavbar() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem('jwt');
+    navigate('/');
+  }
+
   return (
     <div className="navbar py-4">
       <div className="flex-1">
@@ -44,7 +52,9 @@ export default function AppNavbar() {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>
