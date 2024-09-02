@@ -41,7 +41,7 @@ const posts = [
 
 export default function GroupFeed() {
   return (
-    <div className="space-y-8 mt-6">
+    <div className="space-y-8">
       {posts.map((post) => {
         return (
           <div
