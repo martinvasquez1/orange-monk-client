@@ -61,6 +61,7 @@ export default function Home({}) {
             <Link
               to="/app/group/123"
               className="bg-white border-2 border-slate-100 p-4 rounded-xl"
+              key={group.name}
             >
               <h2 className="text-lg">{group.name}</h2>
               <p className="text-sm mt-1">{group.description}</p>
