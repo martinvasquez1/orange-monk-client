@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/Home.jsx';
 import Group from './pages/group/Group.jsx';
+import Post from './pages/post/Post.jsx';
 
 export default function Router() {
   return (
@@ -27,6 +28,7 @@ export default function Router() {
         >
           <Route index element={<Home />} />
           <Route path="group/:groupId" element={<Group />} />
+          <Route path="group/:groupId/post/:postId" element={<Post />} />
         </Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
