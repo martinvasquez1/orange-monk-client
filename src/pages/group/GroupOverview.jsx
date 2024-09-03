@@ -20,12 +20,12 @@ const buttonsData = [
 
 export default function GroupOverview() {
   return (
-    <div>
+    <div className="bg-white rounded-2xl shadow-[rgba(0,_0,_0,_0.14)_0px_1px_3px]">
       <img
         src={groupData.overviewImage}
-        className="h-52 w-full rounded-lg object-cover"
+        className="h-52 w-full rounded-tl-2xl rounded-tr-2xl object-cover"
       />
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-8 p-4">
         <div>
           <div className="text-3xl font-bold">{groupData.name}</div>
           <div className="text-sm mt-2">{groupData.description}</div>
@@ -36,18 +36,20 @@ export default function GroupOverview() {
           </button>
         </div>
       </div>
-      <div className="bg-[#f6f6f6] grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] max-w-[32rem] rounded-xl py-1 mt-4 divide-x">
-        {buttonsData.map((data) => {
-          return (
-            <Link
-              to={data.url}
-              key={data.name}
-              className="py-2 text-center rounded-md hover:bg-white"
-            >
-              {data.name}
-            </Link>
-          );
-        })}
+      <div className="p-4">
+        <div className="bg-[#f6f6f6] grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] max-w-[32rem] rounded-xl py-1 divide-x">
+          {buttonsData.map((data) => {
+            return (
+              <Link
+                to={data.url}
+                key={data.name}
+                className="py-2 text-center rounded-md hover:bg-white"
+              >
+                {data.name}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
