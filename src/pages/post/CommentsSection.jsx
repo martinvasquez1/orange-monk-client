@@ -35,7 +35,7 @@ const comments = [
 
 export default function CommentsSection() {
   return (
-    <div className="mt-8 space-y-10">
+    <div className="mt-4 space-y-10 bg-white shadow rounded-2xl p-4 py-6">
       {comments.map((comment) => (
         <Comment data={comment} key={comment.id} />
       ))}

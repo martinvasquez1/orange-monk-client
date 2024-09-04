@@ -13,10 +13,10 @@ const data = [
 
 export default function GroupAside() {
   return (
-    <aside className="flex flex-col gap-8">
+    <aside className="flex flex-col gap-4">
       {data.map((info) => {
         return (
-          <div key={info.id} className="bg-white p-4 rounded-2xl shadow-sm">
+          <div key={info.id} className="bg-white p-4 rounded-2xl shadow">
             <h3 className="font-bold text-lg">{info.title}</h3>
             <p className="mt-4">{info.body}</p>
           </div>

@@ -5,7 +5,7 @@ import AppNavbar from './AppNavbar';
 
 export default function AppLayout({}) {
   return (
-    <div className="px-8 bg-[#fcfcfc]">
+    <div className="px-8 bg-[#f7f7f7]">
       <AppNavbar />
       <Outlet />
     </div>

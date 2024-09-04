@@ -20,7 +20,7 @@ const buttonsData = [
 
 export default function GroupOverview() {
   return (
-    <div className="bg-white rounded-2xl shadow-[rgba(0,_0,_0,_0.14)_0px_1px_3px]">
+    <div className="bg-white rounded-2xl shadow">
       <img
         src={groupData.overviewImage}
         className="h-52 w-full rounded-tl-2xl rounded-tr-2xl object-cover"

@@ -48,7 +48,7 @@ const groups = [
 
 export default function Home({}) {
   return (
-    <div className="bg-white p-4 rounded-2xl shadow-sm">
+    <div className="bg-white p-8 rounded-2xl shadow">
       <div className="mt-4 mb-8">
         <h1 className="text-3xl font-bold">Welcome Oscar Peterson!</h1>
         <p className="mt-1">
@@ -60,7 +60,7 @@ export default function Home({}) {
           return (
             <Link
               to="/app/group/123"
-              className="bg-white border-2 border-slate-100 p-4 rounded-xl"
+              className="bg-white border-2 border-slate-100 p-4 rounded-xl hover:bg-gray-100"
               key={group.name}
             >
               <h2 className="text-lg">{group.name}</h2>
