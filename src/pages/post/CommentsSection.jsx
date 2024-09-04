@@ -1,4 +1,5 @@
 import Comment from './Comment.jsx';
+import CreateComment from './CreateComment.jsx';
 
 const comments = [
   {
@@ -35,10 +36,13 @@ const comments = [
 
 export default function CommentsSection() {
   return (
-    <div className="mt-4 space-y-10 bg-white shadow rounded-2xl p-4 py-6">
-      {comments.map((comment) => (
-        <Comment data={comment} key={comment.id} />
-      ))}
+    <div className="mt-4 bg-white shadow rounded-2xl p-4 py-6">
+      <CreateComment />
+      <div className="space-y-10 pt-2">
+        {comments.map((comment) => (
+          <Comment data={comment} key={comment.id} />
+        ))}
+      </div>
     </div>
   );
 }
