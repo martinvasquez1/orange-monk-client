@@ -50,10 +50,22 @@ export default function Home({}) {
   return (
     <div className="bg-white p-8 rounded-2xl shadow">
       <div className="mt-4 mb-8">
-        <h1 className="text-3xl font-bold">Welcome Oscar Peterson!</h1>
-        <p className="mt-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing.
-        </p>
+        <div className="flex justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Welcome Oscar Peterson!</h1>
+            <p className="mt-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing.
+            </p>
+          </div>
+          <div className="flex gap-4">
+            <Link to="#" className="btn">
+              Create
+            </Link>
+            <Link to="/app/search" className="btn btn-primary">
+              Search
+            </Link>
+          </div>
+        </div>
       </div>
       <div className="gap-4 grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
         {groups.map((group) => {
