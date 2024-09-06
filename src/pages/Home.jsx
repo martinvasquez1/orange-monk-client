@@ -58,7 +58,7 @@ export default function Home({}) {
             </p>
           </div>
           <div className="flex gap-4">
-            <Link to="#" className="btn">
+            <Link to="/app/create-group" className="btn">
               Create
             </Link>
             <Link to="/app/search" className="btn btn-primary">

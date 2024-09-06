@@ -13,6 +13,7 @@ import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Search from './pages/Search.jsx';
+import CreateGroup from './pages/CreateGroup.jsx';
 
 import Group from './pages/group/Group.jsx';
 import Post from './pages/post/Post.jsx';
@@ -32,6 +33,7 @@ export default function Router() {
           <Route index element={<Home />} />
           <Route path="profile/:profileId" element={<Profile />} />
           <Route path="search/" element={<Search />} />
+          <Route path="create-group" element={<CreateGroup />} />
           <Route path="group/:groupId" element={<Group />} />
           <Route path="group/:groupId/post/:postId" element={<Post />} />
         </Route>
