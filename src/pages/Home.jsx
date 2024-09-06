@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ThemeController from '../components/ThemeController';
 
 const groups = [
   {
@@ -81,6 +82,8 @@ export default function Home({}) {
           );
         })}
       </div>
+      test only:
+      <ThemeController />
     </div>
   );
 }

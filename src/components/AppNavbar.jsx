@@ -18,13 +18,6 @@ export default function AppNavbar() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -46,9 +39,6 @@ export default function AppNavbar() {
               <Link to="/app/profile/999" className="justify-between">
                 Profile
               </Link>
-            </li>
-            <li>
-              <a>Settings</a>
             </li>
             <li>
               <button type="button" onClick={handleLogout}>

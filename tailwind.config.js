@@ -5,7 +5,7 @@ export default {
     extend: {},
   },
   plugins: [require('daisyui')],
-  daisyUI: {
+  daisyui: {
     themes: [
       {
         monk: {
@@ -32,7 +32,8 @@ export default {
         },
       },
       'dark',
-      'cupcake',
+      'coffee',
+      'forest',
     ],
   },
 };
