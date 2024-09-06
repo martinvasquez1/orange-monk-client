@@ -8,7 +8,7 @@ export default function ThemeController() {
   }, []);
 
   return (
-    <select data-choose-theme className="p-4 bg-primary">
+    <select data-choose-theme className="p-4">
       <option value="">Default</option>
       <option value="dark">Dark</option>
       <option value="coffee">Coffee</option>

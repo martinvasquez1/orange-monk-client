@@ -1,7 +1,7 @@
 export default function CreateGroup() {
   return (
     <div className="flex justify-center">
-      <div className="bg-white p-8 rounded-2xl shadow w-full max-w-3xl mb-10">
+      <div className="bg-base-100 p-8 rounded-2xl shadow w-full max-w-3xl">
         <div className="text-2xl font-bold">Create group</div>
         <form>
           <label className="form-control w-full max-w-xs mt-2">

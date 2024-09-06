@@ -20,7 +20,7 @@ const buttonsData = [
 
 export default function GroupOverview() {
   return (
-    <div className="bg-white rounded-2xl shadow">
+    <div className="bg-base-100 rounded-2xl shadow">
       <img
         src={groupData.overviewImage}
         className="h-52 w-full rounded-tl-2xl rounded-tr-2xl object-cover"
@@ -37,13 +37,13 @@ export default function GroupOverview() {
         </div>
       </div>
       <div className="p-4">
-        <div className="bg-[#f6f6f6] grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] max-w-[32rem] rounded-xl py-1 divide-x">
+        <div className="bg-base-200 grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] max-w-[32rem] rounded-xl py-1">
           {buttonsData.map((data) => {
             return (
               <Link
                 to={data.url}
                 key={data.name}
-                className="py-2 text-center rounded-md hover:bg-white"
+                className="py-2 text-center rounded-md"
               >
                 {data.name}
               </Link>

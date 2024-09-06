@@ -16,7 +16,7 @@ export default function GroupAside() {
     <aside className="flex flex-col gap-4">
       {data.map((info) => {
         return (
-          <div key={info.id} className="bg-white p-4 rounded-2xl shadow">
+          <div key={info.id} className="bg-base-100 p-4 rounded-2xl shadow">
             <h3 className="font-bold text-lg">{info.title}</h3>
             <p className="mt-4">{info.body}</p>
           </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
+import ThemeController from './ThemeController';
 
 export default function AppNavbar() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function AppNavbar() {
         <Link to="/app">
           <Logo />
         </Link>
+        <ThemeController />
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

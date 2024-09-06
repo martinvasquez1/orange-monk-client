@@ -5,7 +5,7 @@ import Icon from './../../components/Icon';
 export default function PostPreview({ data }) {
   return (
     <Link
-      className="hover:bg-gray-100 rounded-2xl py-2 px-4 block"
+      className="bg-base-100 rounded-2xl py-4 px-4 block"
       to="/app/group/123/post/777"
     >
       <div className="flex gap-4 items-center">
@@ -20,7 +20,7 @@ export default function PostPreview({ data }) {
         <h2 className="font-bold text-xl">{data.title}</h2>
         <h2 className="mt-2 line-clamp-3">{data.body}</h2>
       </div>
-      <div className="mt-4 hover:bg-slate-200 inline-block px-4 py-2 bg-slate-100 rounded-xl">
+      <div className="mt-4 inline-block px-4 py-3 bg-base-200 rounded-xl">
         <div className="flex gap-2">
           <Icon icon={<GoComment />} />
           <span>{data.amountComments}</span>

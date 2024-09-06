@@ -17,7 +17,7 @@ export default function Post() {
     <div className="flex gap-4 my-6">
       <div className="block flex-[3_3_0%]">
         {/* Post */}
-        <div className="bg-white p-4 rounded-2xl shadow">
+        <div className="bg-base-100 p-4 rounded-2xl shadow">
           <div className="flex gap-4 items-center">
             <img
               src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -30,7 +30,7 @@ export default function Post() {
             <h2 className="font-bold text-2xl">{data.title}</h2>
             <h2 className="mt-2 text-lg">{data.body}</h2>
           </div>
-          <div className="mt-4 hover:bg-slate-200 inline-block px-4 py-2 bg-slate-100 rounded-xl">
+          <div className="mt-4 inline-block px-4 py-3 bg-base-300 rounded-xl">
             <div className="flex gap-2">
               <Icon icon={<GoComment />} />
               <span>{data.amountComments}</span>

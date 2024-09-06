@@ -45,7 +45,7 @@ const posts = [
 
 export default function GroupFeed() {
   return (
-    <div className="space-y-8 bg-white p-4 rounded-2xl shadow">
+    <div className="space-y-6 rounded-2xl shadow">
       {posts.map((post) => {
         return <PostPreview data={post} key={post.id} />;
       })}

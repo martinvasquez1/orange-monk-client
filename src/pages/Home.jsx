@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ThemeController from '../components/ThemeController';
 
 const groups = [
   {
@@ -49,7 +48,7 @@ const groups = [
 
 export default function Home({}) {
   return (
-    <div className="bg-white p-8 rounded-2xl shadow">
+    <div className="bg-base-300 py-8 px-4 rounded-2xl">
       <div className="mt-4 mb-8">
         <div className="flex justify-between">
           <div>
@@ -73,7 +72,7 @@ export default function Home({}) {
           return (
             <Link
               to="/app/group/123"
-              className="bg-white border-2 border-slate-100 p-4 rounded-xl hover:bg-gray-100"
+              className="bg-base-100 p-4 rounded-xl "
               key={group.name}
             >
               <h2 className="text-lg">{group.name}</h2>
@@ -82,8 +81,6 @@ export default function Home({}) {
           );
         })}
       </div>
-      test only:
-      <ThemeController />
     </div>
   );
 }
