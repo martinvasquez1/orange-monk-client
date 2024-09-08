@@ -1,5 +1,5 @@
 import Icon from '../../components/Icon';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { SlOptionsVertical } from 'react-icons/sl';
 
@@ -12,10 +12,10 @@ const groupData = {
 };
 
 const buttonsData = [
-  { name: 'Feed', url: '/' },
-  { name: 'Rooms', url: '/rooms' },
-  { name: 'About', url: '/about' },
-  { name: 'Members', url: '/members' },
+  { name: 'Home', url: '/app/group/123' },
+  { name: 'Rooms', url: '/app/group/123/rooms' },
+  { name: 'About', url: '/app/group/123/about' },
+  { name: 'Members', url: '/app/group/123/members' },
 ];
 
 export default function GroupOverview() {
@@ -32,23 +32,25 @@ export default function GroupOverview() {
             {groupData.description}
           </div>
         </div>
-        <div className="">
+        <div>
           <button type="button" className="btn btn-ghost">
             <Icon icon={<SlOptionsVertical />} />
           </button>
         </div>
       </div>
-      <div className="p-4">
-        <div className="grid max-w-[32rem] grid-cols-[repeat(auto-fit,minmax(100px,1fr))] rounded-xl bg-base-200 py-1">
+      <div className="px-4 pb-2">
+        <div className="my-1 grid grid-cols-2 gap-4 sm:flex">
           {buttonsData.map((data) => {
             return (
-              <Link
+              <NavLink
                 to={data.url}
                 key={data.name}
-                className="rounded-md py-2 text-center"
+                className={({ isActive }) =>
+                  `${isActive ? 'bg-primary text-primary-content' : ''} rounded-xl bg-base-200 px-6 py-3 text-center`
+                }
               >
                 {data.name}
-              </Link>
+              </NavLink>
             );
           })}
         </div>
