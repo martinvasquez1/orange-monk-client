@@ -14,7 +14,7 @@ const data = {
 
 export default function Post() {
   return (
-    <div className="my-6 flex gap-4">
+    <div className="flex gap-4">
       <div className="block flex-[3_3_0%]">
         {/* Post */}
         <div className="rounded-2xl bg-base-100 p-4 shadow">

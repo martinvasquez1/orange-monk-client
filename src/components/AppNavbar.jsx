@@ -12,7 +12,7 @@ export default function AppNavbar() {
   }
 
   return (
-    <div className="navbar py-4">
+    <div className="navbar px-0 py-4">
       <div className="flex-1">
         <Link to="/app">
           <Logo />
@@ -38,7 +38,7 @@ export default function AppNavbar() {
             className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li>
-              <Link to="/app/profile/999" className="justify-between">
+              <Link to="/app/profile/999" className="justify-between py-1">
                 Profile
               </Link>
             </li>

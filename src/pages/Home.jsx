@@ -48,7 +48,7 @@ const groups = [
 
 export default function Home({}) {
   return (
-    <div className="rounded-2xl bg-base-300 px-4 py-8">
+    <div className="rounded-2xl bg-base-300">
       <div className="mb-8 mt-4">
         <div className="flex justify-between">
           <div>

@@ -6,7 +6,7 @@ const data = {
 
 export default function Profile() {
   return (
-    <div className="mt-8 rounded-2xl bg-base-100 p-4 shadow">
+    <div className="rounded-2xl bg-base-100 p-4 shadow">
       <div className="flex items-center gap-4">
         <img
           src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -15,7 +15,7 @@ export default function Profile() {
         />
         <div className="text-2xl font-bold">{data.username}</div>
       </div>
-      <div className="mt-8">{data.biography}</div>
+      <div className="mt-6 text-base-content/70">{data.biography}</div>
     </div>
   );
 }

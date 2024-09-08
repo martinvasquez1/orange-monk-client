@@ -48,7 +48,7 @@ const groups = [
 
 export default function Search() {
   return (
-    <div className="rounded-2xl p-4">
+    <div className="rounded-2xl">
       <h1 className="text-3xl font-bold">Search groups</h1>
       <form onSubmit={(e) => e.preventDefault()} className="mt-4">
         <div className="flex">
