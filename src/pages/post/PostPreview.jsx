@@ -1,8 +1,15 @@
 import { GoComment } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import Icon from './../../components/Icon';
+import VideoPlayer from './../../components/VideoPlayer';
 
 export default function PostPreview({ data }) {
+  const regex =
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|watch\?v=|watch\?.*v=|v=|embed\/|shorts\/|.+\/|.+\/)([a-zA-Z0-9_-]{11})/;
+  const match = data.body.match(regex);
+  const videoId = match ? match[1] : null;
+  const hasYoutubeUrl = videoId !== null;
+
   return (
     <Link
       className="bg-base-100 rounded-2xl py-4 px-4 block"
@@ -19,6 +26,7 @@ export default function PostPreview({ data }) {
       <div className="mt-3">
         <h2 className="font-bold text-xl">{data.title}</h2>
         <h2 className="mt-2 line-clamp-3">{data.body}</h2>
+        {hasYoutubeUrl && <VideoPlayer id={videoId} />}
       </div>
       <div className="mt-4 inline-block px-4 py-3 bg-base-200 rounded-xl">
         <div className="flex gap-2">
