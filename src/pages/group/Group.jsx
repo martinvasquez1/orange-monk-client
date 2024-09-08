@@ -2,20 +2,21 @@ import GroupOverview from './GroupOverview';
 import GroupFeed from './GroupFeed';
 import GroupAside from './GroupAside';
 import CreatePostButton from './CreatePostButton';
+import GroupColumns from '../../components/GroupColumns';
 
 export default function Group() {
   return (
     <>
       <GroupOverview />
-      <div className="my-6 flex gap-4">
-        <div className="flex-[3_3_0%]">
-          <CreatePostButton />
-          <GroupFeed />
-        </div>
-        <div className="flex-1">
-          <GroupAside />
-        </div>
-      </div>
+      <GroupColumns
+        left={
+          <>
+            <CreatePostButton />
+            <GroupFeed />
+          </>
+        }
+        right={<GroupAside />}
+      />
     </>
   );
 }
