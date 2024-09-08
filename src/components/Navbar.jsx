@@ -16,7 +16,7 @@ export default function Navbar() {
       <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-base-300 w-full">
+        <div className="navbar w-full bg-base-300">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-1"

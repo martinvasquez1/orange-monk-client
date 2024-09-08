@@ -12,10 +12,10 @@ export default function CreateComment() {
           placeholder="Write a comment"
         ></textarea>
         <div className="flex justify-end gap-4">
-          <button type="button" className="mt-4 btn">
+          <button type="button" className="btn mt-4">
             Clear
           </button>
-          <button type="submit" className="mt-4 btn btn-primary">
+          <button type="submit" className="btn btn-primary mt-4">
             Comment
           </button>
         </div>

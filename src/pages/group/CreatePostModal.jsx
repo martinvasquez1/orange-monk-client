@@ -6,7 +6,7 @@ export default function CreatePostModal() {
       <div className="modal-box sm:w-2/3 sm:max-w-[600px]">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <button className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </button>
         </form>
@@ -18,7 +18,7 @@ export default function CreatePostModal() {
           }}
         >
           <h3 className="text-xl font-bold">Create Post</h3>
-          <label className="form-control w-full max-w-xs mt-2">
+          <label className="form-control mt-2 w-full max-w-xs">
             <div className="label">
               <span className="label-text">Title</span>
             </div>
@@ -40,7 +40,7 @@ export default function CreatePostModal() {
             ></textarea>
           </label>
 
-          <div className="flex justify-end mt-6">
+          <div className="mt-6 flex justify-end">
             <button type="submit" className="btn">
               Submit
             </button>

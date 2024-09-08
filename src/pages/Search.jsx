@@ -48,38 +48,40 @@ const groups = [
 
 export default function Search() {
   return (
-    <div className="p-4 rounded-2xl shadow">
+    <div className="rounded-2xl p-4">
       <h1 className="text-3xl font-bold">Search groups</h1>
       <form onSubmit={(e) => e.preventDefault()} className="mt-4">
         <div className="flex">
           <input
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full rounded-none rounded-tl-2xl rounded-bl-2xl"
+            className="input input-bordered w-full rounded-none rounded-bl-2xl rounded-tl-2xl"
           />
           <button
             type="submit"
-            className="bg-primary flex  items-center justify-center px-6 rounded-tr-2xl rounded-br-2xl"
+            className="flex items-center justify-center rounded-br-2xl rounded-tr-2xl bg-primary px-6"
           >
             <Icon icon={<IoSearchSharp />} className="text-primary-content" />
           </button>
         </div>
       </form>
-      <div className="gap-4 grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] mt-6">
+      <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-4">
         {groups.map((data) => {
           return (
-            <div className="bg-base-100  p-4 rounded-xl " key={data.name}>
-              <div className="flex gap-4 items-center">
+            <div className="rounded-xl bg-base-100 p-4" key={data.name}>
+              <div className="flex items-center gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1599272771314-f3ec16bda3f2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Profile picture."
-                  className="h-20 w-20 rounded-full aspect-square object-cover"
+                  className="aspect-square h-20 w-20 rounded-full object-cover"
                 />
                 <div>
                   <h2 className="text-lg">{data.name}</h2>
-                  <p className="text-sm mt-1">{data.description}</p>
+                  <p className="mt-1 text-sm text-base-content/70">
+                    {data.description}
+                  </p>
                 </div>
-                <button type="button" className="btn ">
+                <button type="button" className="btn">
                   Join
                 </button>
               </div>

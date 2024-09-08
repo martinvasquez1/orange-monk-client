@@ -1,6 +1,6 @@
 export default function VideoPlayer({ id }) {
   return (
-    <div className="pt-5 pb-1">
+    <div className="pb-1 pt-5">
       <iframe
         width="560"
         height="315"

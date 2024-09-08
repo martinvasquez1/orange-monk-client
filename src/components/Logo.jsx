@@ -26,7 +26,7 @@ export default function Logo() {
           fill="#5D2C02"
         ></path>{' '}
       </svg>
-      <span className="ml-2 font-bold text-xl">Monk</span>
+      <span className="ml-2 text-xl font-bold">Monk</span>
     </div>
   );
 }

@@ -36,7 +36,7 @@ const comments = [
 
 export default function CommentsSection() {
   return (
-    <div className="mt-4 bg-base-100 shadow rounded-2xl p-4 py-6">
+    <div className="mt-4 rounded-2xl bg-base-100 p-4 py-6 shadow">
       <CreateComment />
       <div className="space-y-10 pt-2">
         {comments.map((comment) => (

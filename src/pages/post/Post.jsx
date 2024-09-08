@@ -14,11 +14,11 @@ const data = {
 
 export default function Post() {
   return (
-    <div className="flex gap-4 my-6">
+    <div className="my-6 flex gap-4">
       <div className="block flex-[3_3_0%]">
         {/* Post */}
-        <div className="bg-base-100 p-4 rounded-2xl shadow">
-          <div className="flex gap-4 items-center">
+        <div className="rounded-2xl bg-base-100 p-4 shadow">
+          <div className="flex items-center gap-4">
             <img
               src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Profile picture."
@@ -27,10 +27,10 @@ export default function Post() {
             <div className="text-lg">{data.user}</div>
           </div>
           <div className="mt-3">
-            <h2 className="font-bold text-2xl">{data.title}</h2>
+            <h2 className="text-2xl font-bold">{data.title}</h2>
             <h2 className="mt-2 text-lg">{data.body}</h2>
           </div>
-          <div className="mt-4 inline-block px-4 py-3 bg-base-300 rounded-xl">
+          <div className="mt-4 inline-block rounded-xl bg-base-300 px-4 py-3">
             <div className="flex gap-2">
               <Icon icon={<GoComment />} />
               <span>{data.amountComments}</span>

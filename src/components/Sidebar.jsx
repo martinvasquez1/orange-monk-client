@@ -19,7 +19,7 @@ export default function Sidebar() {
         aria-label="close sidebar"
         className="drawer-overlay"
       ></label>
-      <ul className="menu bg-base-200 min-h-full w-80 p-4">
+      <ul className="menu min-h-full w-80 bg-base-200 p-4">
         {links.map((link) => (
           <li key={link.text}>
             <Link to={link.to} onClick={closeDrawer}>
