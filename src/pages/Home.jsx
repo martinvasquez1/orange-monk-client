@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { getGroups } from '../api/groups';
 
 export default function Home({}) {
-  const groupsQuery = useQuery({ queryKey: ['groups'], queryFn: getGroups });
-
-  if (groupsQuery.isLoading) return <p>Loading...</p>;
-  if (groupsQuery.isError) return <p>Error!</p>;
-
-  const groups = groupsQuery.data.data.groups;
-
   return (
     <div className="rounded-2xl bg-base-300">
       <div className="mb-8 mt-4">
@@ -32,7 +23,7 @@ export default function Home({}) {
         </div>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
-        {groups.map((group) => {
+        {/*groups.map((group) => {
           return (
             <Link
               to="/app/group/123"
@@ -45,7 +36,7 @@ export default function Home({}) {
               </p>
             </Link>
           );
-        })}
+        })*/}
       </div>
     </div>
   );
