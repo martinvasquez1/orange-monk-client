@@ -1,5 +1,9 @@
 import axiosInstance from './axiosInstance';
 
+export function getUser(id) {
+  return axiosInstance.get(`users/${id}`).then((res) => res.data);
+}
+
 export function createUser({ username, email, password, confirmPassword }) {
   return axiosInstance
     .post('/auth/sign-up', {

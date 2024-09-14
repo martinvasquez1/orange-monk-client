@@ -9,7 +9,7 @@ export default function SignIn({}) {
 
   function submitUser(event) {
     event.preventDefault();
-    fetch(import.meta.env.VITE_API_URL + 'auth/sign-in', {
+    fetch(import.meta.env.VITE_API_URL + '/auth/sign-in', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
