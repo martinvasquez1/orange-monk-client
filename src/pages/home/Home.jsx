@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getUser } from '../api/users';
+import { getUser } from '../../api/users';
 import { jwtDecode } from 'jwt-decode';
+import UserGroups from './UserGroups';
 
 export default function Home({}) {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
   const userQuery = useQuery({
-    queryKey: ['user', userId],
+    queryKey: ['users', userId],
     queryFn: () => getUser(userId),
   });
 
@@ -36,22 +37,7 @@ export default function Home({}) {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
-        {/*groups.map((group) => {
-          return (
-            <Link
-              to="/app/group/123"
-              className="rounded-xl bg-base-100 p-4 shadow"
-              key={group.name}
-            >
-              <h2 className="text-lg">{group.name}</h2>
-              <p className="mt-1 text-sm text-base-content/70">
-                {group.description}
-              </p>
-            </Link>
-          );
-        })*/}
-      </div>
+      <UserGroups userId={userId} />
     </div>
   );
 }

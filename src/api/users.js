@@ -14,3 +14,7 @@ export function createUser({ username, email, password, confirmPassword }) {
     })
     .then((res) => res.data);
 }
+
+export function getUserGroups(id) {
+  return axiosInstance.get(`users/${id}/groups`).then((res) => res.data);
+}
