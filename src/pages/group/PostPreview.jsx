@@ -1,12 +1,12 @@
 import { GoComment } from 'react-icons/go';
 import { Link } from 'react-router-dom';
-import Icon from './../../components/Icon';
-import VideoPlayer from './../../components/VideoPlayer';
+import Icon from '../../components/Icon';
+import VideoPlayer from '../../components/VideoPlayer';
 
 export default function PostPreview({ data }) {
   const regex =
     /(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|watch\?v=|watch\?.*v=|v=|embed\/|shorts\/|.+\/|.+\/)([a-zA-Z0-9_-]{11})/;
-  const match = data.body.match(regex);
+  const match = data.content.match(regex);
   const videoId = match ? match[1] : null;
   const hasYoutubeUrl = videoId !== null;
 
@@ -21,17 +21,19 @@ export default function PostPreview({ data }) {
           alt="Profile picture."
           className="h-10 w-10 rounded-full"
         />
-        <div className="text-lg">{data.user}</div>
+        <div className="text-lg">{data.author.username}</div>
       </div>
       <div className="mt-3">
         <h2 className="text-xl font-bold">{data.title}</h2>
-        <h2 className="mt-2 line-clamp-3 text-base-content/70">{data.body}</h2>
+        <h2 className="mt-2 line-clamp-3 text-base-content/70">
+          {data.content}
+        </h2>
         {hasYoutubeUrl && <VideoPlayer id={videoId} />}
       </div>
       <div className="mt-4 inline-block rounded-xl bg-base-200 px-4 py-3">
         <div className="flex gap-2">
           <Icon icon={<GoComment />} />
-          <span>{data.amountComments}</span>
+          <span>{data.comments.length}</span>
         </div>
       </div>
     </Link>

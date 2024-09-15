@@ -16,7 +16,7 @@ export default function UserGroups({ userId }) {
       {data.data.groups.map((group) => {
         return (
           <Link
-            to="/app/group/123"
+            to={`/app/group/${group._id}`}
             className="flex items-center gap-4 rounded-xl bg-base-100 p-4 shadow"
             key={group._id}
           >
