@@ -13,7 +13,7 @@ import NotFound from './pages/NotFound.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/home/Home.jsx';
 import Profile from './pages/Profile.jsx';
-import Search from './pages/Search.jsx';
+import Search from './pages/search/Search.jsx';
 import CreateGroup from './pages/CreateGroup.jsx';
 
 import Group from './pages/group/Group.jsx';
