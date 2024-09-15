@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { createGroup } from './../api/groups';
+import { jwtDecode } from 'jwt-decode';
 
 export default function CreateGroup() {
   const [name, setName] = useState('');
@@ -19,7 +20,8 @@ export default function CreateGroup() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    mutation.mutate({ name, description, isPrivate });
+    const userId = jwtDecode(localStorage.getItem('jwt')).id;
+    mutation.mutate({ name, description, isPrivate, owner: userId });
   }
 
   return (
