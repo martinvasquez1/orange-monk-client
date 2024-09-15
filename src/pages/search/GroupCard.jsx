@@ -23,8 +23,8 @@ export default function GroupCard({ data }) {
           className="aspect-square h-20 w-20 rounded-full object-cover"
         />
         <div className="flex-1">
-          <h2 className="text-lg">{data.name}</h2>
-          <p className="mt-1 text-sm text-base-content/70">
+          <h2 className="line-clamp-1 text-lg">{data.name}</h2>
+          <p className="mt-1 line-clamp-2 text-sm text-base-content/70">
             {data.description}
           </p>
         </div>
