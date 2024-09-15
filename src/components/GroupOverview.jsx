@@ -1,4 +1,4 @@
-import Icon from '../../components/Icon';
+import Icon from './Icon';
 import { NavLink } from 'react-router-dom';
 
 import { SlOptionsVertical } from 'react-icons/sl';
