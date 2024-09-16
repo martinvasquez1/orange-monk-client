@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createUser } from '../api/users';
+import { signUp } from '../api/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ export default function SignUp({}) {
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: createUser,
+    mutationFn: signUp,
     onSuccess: (data) => {
       localStorage.setItem('jwt', data.data.token);
       navigate('/app');

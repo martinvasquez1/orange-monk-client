@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { signIn } from '../api/auth';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn({}) {
@@ -7,34 +9,26 @@ export default function SignIn({}) {
 
   const navigate = useNavigate();
 
-  function submitUser(event) {
-    event.preventDefault();
-    fetch(import.meta.env.VITE_API_URL + '/auth/sign-in', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log;
-        if (result.status === 'success') {
-          localStorage.setItem('jwt', result.data.token);
-          setEmail('');
-          setPassword('');
-          console.log('redirect ');
-          navigate('/app');
-        } else {
-          console.log('Fail sign in');
-        }
-      });
+  const mutation = useMutation({
+    mutationFn: signIn,
+    onSuccess: (data) => {
+      localStorage.setItem('jwt', data.data.token);
+      navigate('/app');
+    },
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    mutation.mutate({
+      email,
+      password,
+    });
   }
 
   return (
     <div>
       <h1>Login </h1>
-      <form onSubmit={submitUser}>
+      <form onSubmit={handleSubmit}>
         <input
           value={email}
           type="email"

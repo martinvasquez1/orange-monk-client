@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPost } from '../../api/posts';
+import { useEffect } from 'react';
 
 import Icon from '../../components/Icon';
 import { GoComment } from 'react-icons/go';
@@ -12,6 +13,10 @@ export default function Post() {
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error!</p>;
