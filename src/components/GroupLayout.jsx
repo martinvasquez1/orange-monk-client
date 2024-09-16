@@ -5,7 +5,7 @@ import GroupAside from './GroupAside';
 export default function GroupLayout() {
   const location = useLocation();
   const hideList = [
-    /^\/app\/group\/\d+\/post\/\d+$/, // Regex to match /app/group/groupId/post/postId
+    /^\/app\/group\/[a-zA-Z0-9]+\/post\/[a-zA-Z0-9]+$/, // Regex to match /app/group/groupId/post/postId
   ];
   const hideOverview = hideList.some((regex) => regex.test(location.pathname));
 

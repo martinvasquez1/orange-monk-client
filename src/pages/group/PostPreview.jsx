@@ -13,7 +13,7 @@ export default function PostPreview({ data }) {
   return (
     <Link
       className="block rounded-2xl bg-base-100 px-4 py-4 shadow"
-      to="/app/group/123/post/777"
+      to={`post/${data._id}`}
     >
       <div className="flex items-center gap-4">
         <img

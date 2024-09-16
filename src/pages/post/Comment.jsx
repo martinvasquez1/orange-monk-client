@@ -7,9 +7,9 @@ export default function Comment({ data }) {
           alt="Profile picture."
           className="h-10 w-10 rounded-full"
         />
-        <div className="text-lg">{data.user}</div>
+        <div className="text-lg">{data.author.username}</div>
       </div>
-      <p className="ml-14">{data.body}</p>
+      <p className="ml-14">{data.content}</p>
     </div>
   );
 }
