@@ -14,8 +14,10 @@ export function createGroup({ name, description, isPrivate, owner }) {
     .then((res) => res.data);
 }
 
-export function getGroupPosts(id) {
-  return axiosInstance.get(`/groups/${id}/posts`).then((res) => res.data);
+export function getGroupPosts(id, page = 1, limit = 15) {
+  return axiosInstance
+    .get(`/groups/${id}/posts`, { params: { page: page, limit: limit } })
+    .then((res) => res.data);
 }
 
 export function joinGroup(id) {
