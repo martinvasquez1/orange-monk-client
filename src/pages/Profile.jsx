@@ -1,10 +1,19 @@
-const data = {
-  username: 'CinephileAlice',
-  biography:
-    'Passionate movie lover with a particular interest in sci-fi and classic films. Always on the lookout for the latest releases and hidden gems in cinema. Enjoys discussing film theory, favorite directors, and everything related to the world of movies. Feel free to reach out if you want to chat about the latest blockbusters or timeless classics!',
-};
+import { useQuery } from '@tanstack/react-query';
+import { getUser } from './../api/users';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Profile() {
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['users', userId],
+    queryFn: () => getUser(userId),
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error!</p>;
+
+  const user = data.data.user;
+
   return (
     <div className="rounded-2xl bg-base-100 p-4 shadow">
       <div className="flex items-center gap-4">
@@ -13,9 +22,11 @@ export default function Profile() {
           alt="Profile picture."
           className="h-20 w-20 rounded-full"
         />
-        <div className="text-2xl font-bold">{data.username}</div>
+        <div className="text-2xl font-bold">{user.username}</div>
       </div>
-      <div className="mt-6 text-base-content/70">{data.biography}</div>
+      <div className="mt-6 text-base-content/70">
+        {user.bio || "This user hasn't set a biography yet."}
+      </div>
     </div>
   );
 }
