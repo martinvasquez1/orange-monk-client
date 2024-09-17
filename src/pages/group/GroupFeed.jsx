@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getGroupPosts } from '../../api/groups';
-import { useRef, useEffect } from 'react';
 import PostPreview from './PostPreview';
+import useInfiniteScroll from './../../hooks/useInfiniteScroll';
 
 export default function GroupFeed() {
   const { groupId } = useParams();
@@ -16,29 +16,15 @@ export default function GroupFeed() {
   } = useInfiniteQuery({
     queryKey: ['groups', groupId, 'posts'],
     queryFn: ({ pageParam = 1 }) => getGroupPosts(groupId, pageParam, 10),
-    getNextPageParam: (lastPage) => lastPage.data.next.page,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.data.next != undefined) {
+        return lastPage.data.next.page;
+      }
+      return undefined;
+    },
   });
 
-  const loadMoreRef = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const bottomIsVisible = entries[0].isIntersecting;
-      if (bottomIsVisible && hasNextPage) {
-        fetchNextPage();
-      }
-    });
-
-    const currentRef = loadMoreRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [hasNextPage, fetchNextPage]);
+  const loadMoreRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error!</p>;
@@ -57,16 +43,7 @@ export default function GroupFeed() {
       {posts.map((post) => {
         return <PostPreview data={post} key={post._id} />;
       })}
-      {hasNextPage && (
-        <button
-          type="button"
-          onClick={() => fetchNextPage()}
-          disabled={isFetchingNextPage}
-        >
-          {isFetchingNextPage ? 'Loading' : 'Load more'}
-        </button>
-      )}
-      {/*hasNextPage && <div ref={loadMoreRef}>abc</div>*/}
+      {hasNextPage && <div ref={loadMoreRef}></div>}
     </div>
   );
 }
