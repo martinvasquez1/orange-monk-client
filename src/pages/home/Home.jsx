@@ -6,28 +6,34 @@ import UserGroups from './UserGroups';
 
 export default function Home({}) {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
-  const userQuery = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['users', userId],
     queryFn: () => getUser(userId),
   });
 
-  if (userQuery.isLoading) return <p>Loading...</p>;
-  if (userQuery.isError) return <p>Error!</p>;
-
-  const user = userQuery.data.data.user;
+  if (isError) return 'Error!';
 
   return (
-    <div className="rounded-2xl bg-base-300">
+    <div className="rounded-2xl">
       <div className="mb-8 mt-4">
-        <div className="flex justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Welcome {user.username}!</h1>
-            <p className="mt-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing.
-            </p>
-          </div>
-          <div className="flex gap-4">
-            <Link to="/app/create-group" className="btn">
+        <div className="flex flex-col justify-between md:flex-row">
+          {isLoading ? (
+            <div>
+              <div className="skeleton h-9 w-72"></div>
+              <div className="skeleton mt-1 h-6 w-96"></div>
+            </div>
+          ) : (
+            <div>
+              <h1 className="text-3xl font-bold">
+                Welcome {data.data.user.username}!
+              </h1>
+              <p className="mt-1">
+                Lorem ipsum dolor sit amet consectetur adipisicing.
+              </p>
+            </div>
+          )}
+          <div className="flex gap-4 pt-4 md:pt-0">
+            <Link to="/app/create-group" className="btn bg-base-300">
               Create
             </Link>
             <Link to="/app/search" className="btn btn-primary">

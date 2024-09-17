@@ -8,7 +8,18 @@ export default function UserGroups({ userId }) {
     queryFn: () => getUserGroups(userId),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-32 w-full"></div>
+      </div>
+    );
+  }
   if (isError) return <div>Error!</div>;
 
   return (
