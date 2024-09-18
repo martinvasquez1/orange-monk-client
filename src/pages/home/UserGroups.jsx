@@ -2,6 +2,18 @@ import { Link } from 'react-router-dom';
 import { getUserGroups } from '../../api/users';
 import { useQuery } from '@tanstack/react-query';
 
+function LoadingSkeleton() {
+  return (
+    <div className="flex items-center gap-4 rounded-xl bg-base-100 p-4 shadow">
+      <div className="skeleton aspect-square h-20 w-20 rounded-full"></div>
+      <div className="w-full flex-1">
+        <div className="skeleton line-clamp-1 h-7 w-full max-w-40"></div>
+        <div className="skeleton mt-1 line-clamp-2 h-5 w-full max-w-full sm:max-w-52"></div>
+      </div>
+    </div>
+  );
+}
+
 export default function UserGroups({ userId }) {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['users', userId, 'groups'],
@@ -11,12 +23,9 @@ export default function UserGroups({ userId }) {
   if (isLoading) {
     return (
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-32 w-full"></div>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <LoadingSkeleton key={index} />
+        ))}
       </div>
     );
   }
@@ -33,8 +42,7 @@ export default function UserGroups({ userId }) {
           >
             <img
               src="https://images.unsplash.com/photo-1599272771314-f3ec16bda3f2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Profile picture."
-              className="aspect-square h-20 w-20 rounded-full object-cover"
+              className="skeleton aspect-square h-20 w-20 rounded-full object-cover"
             />
             <div className="flex-1">
               <h2 className="line-clamp-1 text-lg">{group.name}</h2>
