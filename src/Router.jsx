@@ -21,6 +21,7 @@ import Group from './pages/group/Group.jsx';
 import Post from './pages/post/Post.jsx';
 import GroupAbout from './pages/GroupAbout.jsx';
 import Members from './pages/members/Members.jsx';
+import Rooms from './pages/rooms/Rooms.jsx';
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ export default function Router() {
             <Route path="group/:groupId" element={<GroupLayout />}>
               <Route index element={<Group />} />
               <Route path="post/:postId" element={<Post />} />
+              <Route path="rooms" element={<Rooms />} />
               <Route path="about" element={<GroupAbout />} />
               <Route path="members" element={<Members />} />
             </Route>
