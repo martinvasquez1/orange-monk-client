@@ -13,7 +13,7 @@ export default function GroupLayout() {
     <>
       {!hideOverview && <GroupOverview />}
       <div className="mt-4 flex gap-4">
-        <div className="flex-[3_3_0%]">
+        <div className="flex-[3_3_0%] overflow-x-auto">
           <Outlet />
         </div>
         <div className="hidden flex-1 md:block">
