@@ -28,6 +28,7 @@ function LoadingSkeleton({ buttonsData }) {
               <NavLink
                 to={data.url}
                 key={data.name}
+                end={data.name === 'Home'}
                 className={({ isActive }) =>
                   `${isActive ? 'bg-primary text-primary-content' : ''} rounded-xl bg-base-200 px-6 py-3 text-center`
                 }
@@ -91,6 +92,7 @@ export default function GroupOverview() {
               <NavLink
                 to={data.url}
                 key={data.name}
+                end={data.name === 'Home'}
                 className={({ isActive }) =>
                   `${isActive ? 'bg-primary text-primary-content' : ''} rounded-xl bg-base-200 px-6 py-3 text-center`
                 }
