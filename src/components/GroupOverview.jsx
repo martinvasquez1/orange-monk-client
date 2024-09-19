@@ -6,6 +6,43 @@ import Icon from './Icon';
 import { NavLink } from 'react-router-dom';
 import { SlOptionsVertical } from 'react-icons/sl';
 
+function LoadingSkeleton({ buttonsData }) {
+  return (
+    <div className="rounded-2xl bg-base-100 shadow">
+      <div className="skeleton h-52 w-full rounded-bl-none rounded-br-none rounded-tl-2xl rounded-tr-2xl"></div>
+      <div className="mt-8 flex justify-between p-4">
+        <div className="w-full">
+          <div className="skeleton h-9 w-full max-w-80"></div>
+          <div className="skeleton mt-2 h-5 w-full max-w-80"></div>
+        </div>
+        <div>
+          <button type="button" className="btn btn-ghost">
+            <Icon icon={<SlOptionsVertical />} />
+          </button>
+        </div>
+      </div>
+      <div className="px-4 pb-2">
+        <div className="my-1 grid grid-cols-2 gap-4 sm:flex">
+          {buttonsData.map((data) => {
+            return (
+              <NavLink
+                to={data.url}
+                key={data.name}
+                className={({ isActive }) =>
+                  `${isActive ? 'bg-primary text-primary-content' : ''} rounded-xl bg-base-200 px-6 py-3 text-center`
+                }
+                onClick={(e) => e.preventDefault()}
+              >
+                {data.name}
+              </NavLink>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GroupOverview() {
   const { groupId } = useParams();
   const { isLoading, isError, data } = useQuery({
@@ -13,17 +50,17 @@ export default function GroupOverview() {
     queryFn: () => getGroup(groupId),
   });
 
-  if (isLoading) return 'Is loading...';
-  if (isError) return 'Error!';
-
-  const groupData = data.data.group;
-
   const buttonsData = [
     { name: 'Home', url: `/app/group/${groupId}` },
     { name: 'Rooms', url: `/app/group/${groupId}/rooms` },
     { name: 'About', url: `/app/group/${groupId}/about` },
     { name: 'Members', url: `/app/group/${groupId}/members` },
   ];
+
+  if (isLoading) return <LoadingSkeleton buttonsData={buttonsData} />;
+  if (isError) return 'Error!';
+
+  const groupData = data.data.group;
 
   return (
     <div className="rounded-2xl bg-base-100 shadow">
