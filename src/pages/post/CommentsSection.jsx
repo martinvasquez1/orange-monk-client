@@ -12,7 +12,7 @@ export default function CommentsSection() {
     queryFn: () => getComments(postId),
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <div></div>;
   if (isError) return <p>Error!</p>;
 
   const comments = data.data.comments;
