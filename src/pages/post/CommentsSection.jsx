@@ -4,6 +4,7 @@ import { getComments } from '../../api/comments';
 
 import Comment from './Comment.jsx';
 import CreateComment from './CreateComment.jsx';
+import NoDataDisplay from '../../components/NoDataDisplay';
 
 export default function CommentsSection() {
   const { postId } = useParams();
@@ -22,11 +23,17 @@ export default function CommentsSection() {
     <div className="mt-4 rounded-2xl bg-base-100 p-4 py-6 shadow">
       <CreateComment />
       <div className="space-y-10 pt-2">
-        {hasNoComments
-          ? 'No comments!'
-          : comments.map((comment) => (
-              <Comment data={comment} key={comment._id} />
-            ))}
+        {hasNoComments ? (
+          <NoDataDisplay
+            top="No Comments Yet!"
+            bottom="Don't be shy 🫣"
+            noBackground={true}
+          />
+        ) : (
+          comments.map((comment) => (
+            <Comment data={comment} key={comment._id} />
+          ))
+        )}
       </div>
     </div>
   );

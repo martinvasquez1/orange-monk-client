@@ -3,6 +3,7 @@ import { IoSearchSharp } from 'react-icons/io5';
 import { useQuery } from '@tanstack/react-query';
 import { getGroups } from '../../api/groups';
 import GroupCard from './GroupCard';
+import NoDataDisplay from '../../components/NoDataDisplay';
 
 function LoadingSkeleton() {
   return (
@@ -48,17 +49,25 @@ export default function Search() {
         </div>
       </form>
       <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-        {isError ? (
-          <p>Error!</p>
-        ) : isLoading ? (
-          Array.from({ length: skeletonCount }).map((_, index) => (
-            <LoadingSkeleton key={index} />
-          ))
-        ) : (
-          data.data.groups.map((data) => {
-            return <GroupCard data={data} key={data._id} />;
-          })
-        )}
+        {
+          // TOOD: Create a new component for this mess
+          isError ? (
+            <p>Error!</p>
+          ) : isLoading ? (
+            Array.from({ length: skeletonCount }).map((_, index) => (
+              <LoadingSkeleton key={index} />
+            ))
+          ) : data.data.groups.length === 0 ? (
+            <NoDataDisplay
+              top="No Groups Found!"
+              bottom="This should never have happened, but it did..."
+            />
+          ) : (
+            data.data.groups.map((data) => {
+              return <GroupCard data={data} key={data._id} />;
+            })
+          )
+        }
       </div>
     </div>
   );

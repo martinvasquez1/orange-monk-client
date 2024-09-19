@@ -3,6 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getGroupPosts } from '../../api/groups';
 import PostPreview from './PostPreview';
 import useInfiniteScroll from './../../hooks/useInfiniteScroll';
+import NoDataDisplay from '../../components/NoDataDisplay';
 
 function LoadingSkeleton({ amount }) {
   return (
@@ -60,7 +61,12 @@ export default function GroupFeed() {
   const hasNoPosts = posts.length === 0;
 
   if (hasNoPosts) {
-    return <div>No posts! Be the first one </div>;
+    return (
+      <NoDataDisplay
+        top="It's quiet here!"
+        bottom="Share your first post and get the ball rolling."
+      />
+    );
   }
 
   return (

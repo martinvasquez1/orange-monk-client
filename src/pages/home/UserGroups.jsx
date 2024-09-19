@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { getUserGroups } from '../../api/users';
 import { useQuery } from '@tanstack/react-query';
+import NoDataDisplay from '../../components/NoDataDisplay';
 
 function LoadingSkeleton() {
   return (
@@ -31,9 +32,21 @@ export default function UserGroups({ userId }) {
   }
   if (isError) return <div>Error!</div>;
 
+  const groups = data.data.groups;
+  const hasNoGroups = groups.length === 0;
+
+  if (hasNoGroups) {
+    return (
+      <NoDataDisplay
+        top="Looks Like You're All Alone!"
+        bottom="Explore and join groups that match your interests."
+      />
+    );
+  }
+
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-      {data.data.groups.map((group) => {
+      {groups.map((group) => {
         return (
           <Link
             to={`/app/group/${group._id}`}
