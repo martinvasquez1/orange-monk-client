@@ -6,6 +6,7 @@ export default function GroupLayout() {
   const location = useLocation();
   const hideOverviewList = [
     /^\/app\/group\/[a-zA-Z0-9]+\/post\/[a-zA-Z0-9]+$/, // Regex to match /app/group/groupId/post/postId
+    /^\/app\/group\/[a-f0-9]{24}\/create-post$/,
   ];
   const hideOverview = hideOverviewList.some((regex) =>
     regex.test(location.pathname),
