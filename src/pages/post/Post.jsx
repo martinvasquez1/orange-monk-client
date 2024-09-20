@@ -4,24 +4,9 @@ import { getPost } from '../../api/posts';
 import { useEffect } from 'react';
 
 import Icon from '../../components/Icon';
-import { GoComment } from 'react-icons/go';
+import { GoComment, GoHeart } from 'react-icons/go';
 import CommentsSection from './CommentsSection';
-
-function LoadingSkeleton() {
-  return (
-    <div className="block rounded-2xl bg-base-100 p-4 shadow">
-      <div className="flex items-center gap-4">
-        <div className="skeleton h-10 w-10 rounded-full"></div>
-        <div className="skeleton h-6 w-20"></div>
-      </div>
-      <div className="mt-3">
-        <div className="skeleton h-7 w-full max-w-72"></div>
-        <div className="skeleton mt-2 h-6 w-full"></div>
-      </div>
-      <div className="skeleton mt-6 inline-block h-11 w-16 rounded-xl"></div>
-    </div>
-  );
-}
+import PostSkeleton from './../../components/PostSkeleton';
 
 export default function Post() {
   const { postId } = useParams();
@@ -34,7 +19,7 @@ export default function Post() {
     window.scrollTo(0, 0);
   }, []);
 
-  if (isLoading) return <LoadingSkeleton />;
+  if (isLoading) return <PostSkeleton />;
   if (isError) return <p>Error!</p>;
 
   const postData = data.data.post;
@@ -53,8 +38,16 @@ export default function Post() {
           <h2 className="text-2xl font-bold">{postData.title}</h2>
           <h2 className="mt-2 text-lg">{postData.content}</h2>
         </div>
-        <div className="mt-4 inline-block rounded-xl bg-base-300 px-4 py-3">
-          <div className="flex gap-2">
+        <div className="mt-4 flex gap-4">
+          <button
+            type="button"
+            onClick={(e) => e.preventDefault()}
+            className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
+          >
+            <Icon icon={<GoHeart />} />
+            <span>13</span>
+          </button>
+          <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
             <Icon icon={<GoComment />} />
             <span>{postData.comments.length}</span>
           </div>

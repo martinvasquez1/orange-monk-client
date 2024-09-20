@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body * {
+body *:not(a) {
   @apply transition-colors duration-300;
 }
