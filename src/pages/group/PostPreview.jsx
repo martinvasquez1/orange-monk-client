@@ -17,10 +17,7 @@ export default function PostPreview({ data }) {
   const hasYoutubeUrl = videoId !== null;
 
   return (
-    <Link
-      className="block rounded-2xl bg-base-100 px-4 py-4 shadow"
-      to={`post/${data._id}`}
-    >
+    <div className="block rounded-2xl bg-base-100 px-4 py-4 shadow">
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
           <img
@@ -30,32 +27,34 @@ export default function PostPreview({ data }) {
           />
           <div className="text-lg">{data.author.username}</div>
         </div>
-        {isUserPost && <PostOptionsButton />}
+        {isUserPost && <PostOptionsButton postId={data._id} />}
       </div>
-      <div className="mt-3">
-        <h2 className="text-xl font-bold">{data.title}</h2>
-        <h2 className="mt-2 line-clamp-3 text-base-content/70">
-          {data.content}
-        </h2>
-        {hasYoutubeUrl && <VideoPlayer id={videoId} />}
-      </div>
-      <div className="mt-4 flex gap-4">
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-          }}
-          className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
-        >
-          <Icon icon={<GoHeart />} />
-          <span>13</span>
-        </button>
-        <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
-          <Icon icon={<GoComment />} />
-          <span>{data.comments.length}</span>
+      <Link to={`post/${data._id}`}>
+        <div className="mt-3">
+          <h2 className="text-xl font-bold">{data.title}</h2>
+          <h2 className="mt-2 line-clamp-3 text-base-content/70">
+            {data.content}
+          </h2>
+          {hasYoutubeUrl && <VideoPlayer id={videoId} />}
         </div>
-      </div>
-    </Link>
+        <div className="mt-4 flex gap-4">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+            className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
+          >
+            <Icon icon={<GoHeart />} />
+            <span>13</span>
+          </button>
+          <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
+            <Icon icon={<GoComment />} />
+            <span>{data.comments.length}</span>
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 }

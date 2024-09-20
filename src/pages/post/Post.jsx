@@ -39,7 +39,7 @@ export default function Post() {
             />
             <div className="text-lg">{postData.author.username}</div>
           </div>
-          {isUserPost && <PostOptionsButton />}
+          {isUserPost && <PostOptionsButton postId={postId} />}
         </div>
         <div className="mt-3">
           <h2 className="text-2xl font-bold">{postData.title}</h2>

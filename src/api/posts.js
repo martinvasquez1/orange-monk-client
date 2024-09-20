@@ -9,3 +9,9 @@ export function createPost({ title, content, author, groupId }) {
     .post(`/posts`, { title, content, author, groupId })
     .then((res) => res.data);
 }
+
+export function deletePost({ id, groupId }) {
+  return axiosInstance
+    .delete(`/posts/${id}`, { data: { groupId } })
+    .then((res) => res.data);
+}
