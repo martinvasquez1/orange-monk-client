@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import { useQuery } from '@tanstack/react-query';
 import { getPost } from '../../api/posts';
-import { useEffect } from 'react';
 
-import Icon from '../../components/Icon';
-import { GoComment, GoHeart } from 'react-icons/go';
 import CommentsSection from './CommentsSection';
 import PostSkeleton from './../../components/PostSkeleton';
+import PostOptionsButton from '../../components/PostOptionsButton';
+import Icon from '../../components/Icon';
+import { GoComment, GoHeart } from 'react-icons/go';
 
 export default function Post() {
   const { postId } = useParams();
@@ -23,16 +25,21 @@ export default function Post() {
   if (isError) return <p>Error!</p>;
 
   const postData = data.data.post;
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
+  const isUserPost = userId === postData.author._id;
 
   return (
     <>
       <div className="rounded-2xl bg-base-100 p-4 shadow">
-        <div className="flex items-center gap-4">
-          <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="skeleton h-10 w-10 rounded-full"
-          />
-          <div className="text-lg">{postData.author.username}</div>
+        <div className="flex justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="skeleton h-10 w-10 rounded-full"
+            />
+            <div className="text-lg">{postData.author.username}</div>
+          </div>
+          {isUserPost && <PostOptionsButton />}
         </div>
         <div className="mt-3">
           <h2 className="text-2xl font-bold">{postData.title}</h2>

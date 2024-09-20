@@ -50,7 +50,7 @@ export default function GroupFeed() {
       {posts.map((post) => {
         return <PostPreview data={post} key={post._id} />;
       })}
-      {isFetchingNextPage && <LoadingSkeleton amount={1} />}
+      {isFetchingNextPage && <PostSkeleton numLines={3} />}
       {hasNextPage && <div ref={loadMoreRef}></div>}
     </div>
   );

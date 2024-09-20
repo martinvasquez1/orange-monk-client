@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 import VideoPlayer from '../../components/VideoPlayer';
+import PostOptionsButton from '../../components/PostOptionsButton';
 import Icon from '../../components/Icon';
-import { GoComment } from 'react-icons/go';
-import { GoHeart } from 'react-icons/go';
-import { SlOptionsVertical } from 'react-icons/sl';
+import { GoComment, GoHeart } from 'react-icons/go';
 
 export default function PostPreview({ data }) {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
@@ -31,18 +30,7 @@ export default function PostPreview({ data }) {
           />
           <div className="text-lg">{data.author.username}</div>
         </div>
-        {isUserPost && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-            }}
-            className="btn btn-ghost"
-          >
-            <Icon icon={<SlOptionsVertical />} />
-          </button>
-        )}
+        {isUserPost && <PostOptionsButton />}
       </div>
       <div className="mt-3">
         <h2 className="text-xl font-bold">{data.title}</h2>
