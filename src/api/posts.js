@@ -10,6 +10,12 @@ export function createPost({ title, content, author, groupId }) {
     .then((res) => res.data);
 }
 
+export function updatePost({ postId, title, content, author, groupId }) {
+  return axiosInstance
+    .put(`/posts/${postId}`, { title, content, author, groupId })
+    .then((res) => res.data);
+}
+
 export function deletePost({ id, groupId }) {
   return axiosInstance
     .delete(`/posts/${id}`, { data: { groupId } })
