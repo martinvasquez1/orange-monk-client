@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 import VideoPlayer from '../../components/VideoPlayer';
-import PostOptionsButton from '../../components/PostOptionsButton';
+import PostOptionsButton from '../post/PostOptionsButton';
 import Icon from '../../components/Icon';
 import { GoComment, GoHeart } from 'react-icons/go';
 

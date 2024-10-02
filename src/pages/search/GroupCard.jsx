@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { joinGroup } from '../../api/groups';
+import { jwtDecode } from 'jwt-decode';
 
 export default function GroupCard({ data }) {
   const mutation = useMutation({
-    mutationFn: () => joinGroup(data._id),
+    mutationFn: joinGroup,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groups'] });
     },
@@ -11,7 +12,8 @@ export default function GroupCard({ data }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    mutation.mutate();
+    const userId = jwtDecode(localStorage.getItem('jwt')).id;
+    mutation.mutate({ id: data._id, userId: userId });
   }
 
   return (

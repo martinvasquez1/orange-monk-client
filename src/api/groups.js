@@ -20,6 +20,8 @@ export function getGroupPosts(id, page = 1, limit = 15) {
     .then((res) => res.data);
 }
 
-export function joinGroup(id) {
-  return axiosInstance.post(`/groups/${id}/join`).then((res) => res.data);
+export function joinGroup({ id, userId }) {
+  return axiosInstance
+    .post(`/groups/${id}/join`, { userId })
+    .then((res) => res.data);
 }

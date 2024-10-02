@@ -20,7 +20,7 @@ export default function CommentsSection() {
   const hasNoComments = comments.length === 0;
 
   return (
-    <div className="mt-4 rounded-2xl bg-base-100 p-4 py-6 shadow">
+    <div className="mb-20 mt-4 rounded-2xl bg-base-100 p-4 py-6 shadow">
       <CreateComment />
       <div className="space-y-10 pt-2">
         {hasNoComments ? (

@@ -6,7 +6,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 import CommentsSection from './CommentsSection';
 import PostSkeleton from './../../components/PostSkeleton';
-import PostOptionsButton from '../../components/PostOptionsButton';
+import PostOptionsButton from './PostOptionsButton';
 import PostForm from './PostForm';
 import Icon from '../../components/Icon';
 import { GoComment, GoHeart } from 'react-icons/go';
