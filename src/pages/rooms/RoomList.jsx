@@ -3,29 +3,42 @@ const rooms = [
   { _id: '2', name: 'Indie Film Lovers' },
   { _id: '3', name: 'Horror Haven' },
   { _id: '4', name: 'Action & Adventure' },
-  { _id: '5', name: 'Romantic Comedies' },
-  { _id: '6', name: 'Documentary Discussions' },
-  { _id: '7', name: 'Animated Features' },
-  { _id: '8', name: 'Sci-Fi & Fantasy' },
-  { _id: '9', name: 'Film Noir Nights' },
-  { _id: '10', name: 'Cult Classics' },
-  { _id: '11', name: 'Blockbuster Bonanza' },
-  { _id: '12', name: 'International Cinema' },
+  { _id: '5', name: 'Animated Features' },
 ];
 
-export default function RoomList({ setSelectedRoom }) {
+export default function RoomList({
+  selectedRoom,
+  setSelectedRoom,
+  socketRef,
+  setMessages,
+}) {
+  const groupId = 123;
+  const joinRoom = (roomId) => {
+    console.log('join ', roomId);
+    if (roomId) {
+      socketRef.current.emit('joinRoom', { roomId, groupId });
+    }
+  };
+
   return (
-    <div className="rounded-2xl bg-base-100 p-4 px-6 shadow">
-      <div>Room list</div>
-      <div className="flex flex-col items-start pt-4">
+    <div className="h-[90vh] overflow-y-scroll rounded-2xl bg-base-100 p-4 px-6 shadow">
+      <div className="text-lg font-bold">Room list</div>
+      <div className="flex flex-col items-start justify-center gap-4 pt-4">
         {rooms.map((room) => {
           return (
             <button
               type="button"
-              onClick={() => setSelectedRoom(room._id)}
+              className={`btn w-full ${selectedRoom === room.name && 'btn-primary'}`}
+              onClick={() => {
+                setSelectedRoom(room.name);
+                joinRoom(room.name);
+                if (selectedRoom !== room.name) {
+                  setMessages([]);
+                }
+              }}
               key={room._id}
             >
-              {room.name}
+              # {room.name}
             </button>
           );
         })}
