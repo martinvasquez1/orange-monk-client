@@ -1,38 +1,34 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deletePost } from '../api/posts';
+import { deleteRoom } from '../../api/rooms';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
-import Modal from './../components/Modal';
+import Modal from './../../components/Modal';
 
-export default function DeletePostModal({ modalId, postId }) {
+export default function DeleteRoomtModal({ id, roomId }) {
   const { groupId } = useParams();
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: deletePost,
+    mutationFn: deleteRoom,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['groups', groupId, 'posts'],
+        queryKey: ['groups', groupId, 'rooms'],
       });
-      document.getElementById(modalId).close();
-      navigate(`/app/group/${groupId}`);
+      document.getElementById(id).close();
     },
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    const id = postId;
-    mutation.mutate({ id, groupId });
+    mutation.mutate({ groupId, roomId });
   }
 
   return (
-    <Modal id={modalId}>
+    <Modal id={id}>
       <form onSubmit={handleSubmit}>
-        <h2 className="text-xl font-bold">Do you wish to delete this post?</h2>
+        <h2 className="text-xl font-bold">Do you wish to delete this room?</h2>
         <p className="mt-2 text-base-content/70">
-          Deleting this post is permanent and cannot be undone.
+          Deleting this room is permanent.
         </p>
         <div className="mt-8 flex justify-between">
           <div></div>

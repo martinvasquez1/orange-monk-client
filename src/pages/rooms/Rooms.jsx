@@ -1,14 +1,24 @@
 import { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
+import { getRooms } from '../../api/rooms';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 import RoomList from './RoomList';
 import Chat from './Chat';
 import NoDataDisplay from './../../components/NoDataDisplay';
+import PostRoomModal from './PostRoomModal';
 
 export default function Rooms() {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);
+
+  const { groupId } = useParams();
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['groups', groupId, 'rooms'],
+    queryFn: () => getRooms(groupId),
+  });
 
   useEffect(() => {
     socketRef.current = io(
@@ -29,12 +39,45 @@ export default function Rooms() {
     };
   }, []);
 
+  if (isLoading) return <div>Loading</div>;
+  if (isError) return <div>Error!</div>;
+
+  const rooms = data.data;
+  const noRooms = rooms.length === 0;
+  const postModalId = 'post-room-modal';
+
+  if (noRooms) {
+    const isUserAdmin = true;
+
+    return (
+      <>
+        <NoDataDisplay
+          top="No rooms"
+          bottom="Tell your group administrator to create one."
+        >
+          {isUserAdmin && (
+            <button
+              type="button"
+              onClick={() => document.getElementById(postModalId).showModal()}
+              className="btn"
+            >
+              Create room
+            </button>
+          )}
+        </NoDataDisplay>
+        <PostRoomModal id={postModalId} />
+      </>
+    );
+  }
+
   return (
     <div className="flex gap-4">
       <div
         className={`w-full md:w-1/3 ${selectedRoom ? 'hidden md:block' : 'block'}`}
       >
         <RoomList
+          rooms={rooms}
+          postModalId={postModalId}
           selectedRoom={selectedRoom}
           setSelectedRoom={setSelectedRoom}
           socketRef={socketRef}
