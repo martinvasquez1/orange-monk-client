@@ -9,6 +9,7 @@ import { BsSend } from 'react-icons/bs';
 import { BsDoorOpen } from 'react-icons/bs';
 
 export default function RoomList({
+  roomName,
   selectedRoom,
   setSelectedRoom,
   socketRef,
@@ -49,7 +50,7 @@ export default function RoomList({
   return (
     <div className="flex h-[90vh] flex-col rounded-2xl bg-base-100 shadow">
       <div className="flex items-center justify-between border-b-[1px] border-base-300 px-4 py-2">
-        <div className="text-2xl font-bold">{selectedRoom}</div>
+        <div className="text-2xl font-bold">{roomName}</div>
         <button
           type="button"
           onClick={leaveRoom}

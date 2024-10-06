@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import Modal from './../../components/Modal';
 
-export default function DeleteRoomtModal({ id, roomId }) {
+export default function DeleteRoomModal({ id, roomId, setSelectedRoom }) {
   const { groupId } = useParams();
   const queryClient = useQueryClient();
 
@@ -15,6 +15,7 @@ export default function DeleteRoomtModal({ id, roomId }) {
         queryKey: ['groups', groupId, 'rooms'],
       });
       document.getElementById(id).close();
+      setSelectedRoom(null);
     },
   });
 

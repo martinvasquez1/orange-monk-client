@@ -59,7 +59,7 @@ export default function Rooms() {
             <button
               type="button"
               onClick={() => document.getElementById(postModalId).showModal()}
-              className="btn"
+              className="btn mt-2"
             >
               Create room
             </button>
@@ -69,6 +69,10 @@ export default function Rooms() {
       </>
     );
   }
+
+  const roomName = rooms.find((room) => room._id === selectedRoom)?.name;
+
+  console.log(selectedRoom);
 
   return (
     <div className="flex gap-4">
@@ -89,6 +93,7 @@ export default function Rooms() {
       >
         {selectedRoom ? (
           <Chat
+            roomName={roomName}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
             socketRef={socketRef}

@@ -18,6 +18,7 @@ export default function PostRoomModal({ id, commentId, authorId }) {
         queryKey: ['groups', groupId, 'rooms'],
       });
       document.getElementById(id).close();
+      setName('');
     },
   });
 

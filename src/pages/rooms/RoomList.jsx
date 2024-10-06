@@ -23,12 +23,19 @@ export default function RoomList({
   const isAdmin = true;
   const deleteModalId = 'delete-room-modal';
 
-  const joinRoom = (roomId) => {
-    console.log('join ', roomId);
-    if (roomId) {
-      socketRef.current.emit('joinRoom', { roomId, groupId });
+  function join(roomId) {
+    socketRef.current.emit('joinRoom', {
+      roomId: roomId,
+      groupId,
+    });
+
+    setSelectedRoom(roomId);
+
+    const isNewRoom = selectedRoom !== roomId;
+    if (isNewRoom) {
+      setMessages([]);
     }
-  };
+  }
 
   return (
     <div className="h-[90vh] overflow-y-scroll rounded-2xl bg-base-100 p-4 px-6 shadow">
@@ -53,11 +60,7 @@ export default function RoomList({
                 type="button"
                 className={`btn flex-1 ${selectedRoom === room._id && 'btn-primary'} line-clamp-1`}
                 onClick={() => {
-                  setSelectedRoom(room._id);
-                  joinRoom(room.name);
-                  if (selectedRoom !== room._id) {
-                    setMessages([]);
-                  }
+                  join(room._id);
                 }}
               >
                 # {room.name}
@@ -91,7 +94,7 @@ export default function RoomList({
         })}
       </div>
       <PostRoomModal id={postModalId} />
-      <DeleteRoomModal id={deleteModalId} roomId={deleteRoomId} />
+      <DeleteRoomModal id={deleteModalId} roomId={deleteRoomId} setSelectedRoom={setSelectedRoom} />
     </div>
   );
 }
