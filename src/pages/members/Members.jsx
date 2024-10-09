@@ -1,30 +1,34 @@
+import { useState } from 'react';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+
+import Pagination from '../../components/Pagination';
 import Icon from './../../components/Icon';
+import { getGroupUsers } from '../../api/groups';
+
 import { SlOptionsVertical } from 'react-icons/sl';
 
-const users = [
-  {
-    username: 'john_doe',
-    memberSince: '2021-05-15',
-    role: 'Admin',
-  },
-  {
-    username: 'jane_smith',
-    memberSince: '2020-08-22',
-    role: 'Moderator',
-  },
-  {
-    username: 'alice_jones',
-    memberSince: '2019-11-30',
-    role: 'Moderator',
-  },
-  {
-    username: 'bob_brown',
-    memberSince: '2022-01-10',
-    role: 'Moderator',
-  },
-];
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 export default function Members() {
+  const [page, setPage] = useState(1);
+
+  const { groupId } = useParams();
+  const id = groupId;
+
+  const { isLoading, isError, data, isPlaceholderData } = useQuery({
+    queryKey: ['groups', id, 'users', page],
+    queryFn: () => getGroupUsers(id, page, 10),
+    placeholderData: keepPreviousData,
+  });
+
+  if (isLoading) return 'Loading...';
+  if (isError) return 'Error!';
+
+  const users = data.data.results;
+
   return (
     <div className="rounded-2xl bg-base-100 p-4 px-6 shadow">
       <h2 className="text-xl font-bold">Members</h2>
@@ -40,8 +44,18 @@ export default function Members() {
           </thead>
           <tbody>
             {users.map((user) => {
+              const dateObject = new Date(user.createdAt);
+              const options = {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              };
+              const memberSince = dateObject.toLocaleDateString(
+                'en-US',
+                options,
+              );
               return (
-                <tr key={user.username}>
+                <tr key={user._id}>
                   <td className="pl-0">
                     <div className="flex items-center gap-3">
                       <div className="avatar">
@@ -52,11 +66,11 @@ export default function Members() {
                           />
                         </div>
                       </div>
-                      <div className="font-bold">{user.username}</div>
+                      <div className="font-bold">{user.user.username}</div>
                     </div>
                   </td>
-                  <td>{user.memberSince}</td>
-                  <td>{user.role}</td>
+                  <td>{memberSince}</td>
+                  <td>{capitalizeFirstLetter(user.role)}</td>
                   <th>
                     <button className="btn btn-ghost">
                       <Icon icon={<SlOptionsVertical />} />
@@ -67,6 +81,11 @@ export default function Members() {
             })}
           </tbody>
         </table>
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={data.data.totalPages}
+        />
       </div>
     </div>
   );

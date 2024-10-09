@@ -24,10 +24,7 @@ export default function Pagination({ currentPage, setPage, totalPages }) {
           <button
             className={`btn join-item ${currentPage === pageNumber ? 'btn-primary border-primary' : 'bg-base-100'} min-w-14 border-base-100`}
             key={index}
-            onClick={() => {
-              setPage(pageNumber);
-              console.log('Set page ', pageNumber);
-            }}
+            onClick={() => setPage(pageNumber)}
           >
             {pageNumber}
           </button>

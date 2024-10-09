@@ -66,7 +66,7 @@ export default function Search() {
                 <LoadingSkeleton key={index} />
               ))}
             </div>
-          ) : data.data.groups.length === 0 ? (
+          ) : data.data.results.length === 0 ? (
             <NoDataDisplay
               top="No Groups Found!"
               bottom="This should never have happened, but it did..."
@@ -74,14 +74,14 @@ export default function Search() {
           ) : (
             <div>
               <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-                {data.data.groups.results.map((data) => {
+                {data.data.results.map((data) => {
                   return <GroupCard data={data} key={data._id} />;
                 })}
               </div>
               <Pagination
                 currentPage={page}
                 setPage={setPage}
-                totalPages={data.data.groups.totalPages}
+                totalPages={data.data.totalPages}
               />
             </div>
           )

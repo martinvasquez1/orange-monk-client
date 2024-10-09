@@ -25,7 +25,6 @@ export default function RoomList({
   });
 
   const leaveRoom = () => {
-    console.log('leave');
     socketRef.current.emit('leaveRoom', { roomId: selectedRoom });
     setMessages([]);
     setSelectedRoom(null);
@@ -36,7 +35,6 @@ export default function RoomList({
     const time = new Date();
 
     if (message) {
-      console.log('Send ', message, ' to ', selectedRoom);
       socketRef.current.emit('message', {
         message,
         roomId: selectedRoom,

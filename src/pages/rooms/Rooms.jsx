@@ -25,12 +25,7 @@ export default function Rooms() {
       import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001',
     );
 
-    socketRef.current.on('connect', () => {
-      console.log('Socket connected:', socketRef.current.id);
-    });
-
     socketRef.current.on('message', (data) => {
-      console.log('Message received:', data);
       setMessages((prevMessages) => [...prevMessages, data]);
     });
 
@@ -71,8 +66,6 @@ export default function Rooms() {
   }
 
   const roomName = rooms.find((room) => room._id === selectedRoom)?.name;
-
-  console.log(selectedRoom);
 
   return (
     <div className="flex gap-4">

@@ -38,7 +38,6 @@ export default function UserGroups({ userId }) {
   }
   if (isError) return <div>Error!</div>;
 
-  console.log(data.data.groups);
   const groups = data.data.groups.results;
   const hasNoGroups = groups.length === 0;
 
