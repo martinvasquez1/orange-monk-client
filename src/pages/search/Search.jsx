@@ -1,9 +1,13 @@
-import Icon from '../../components/Icon';
-import { IoSearchSharp } from 'react-icons/io5';
-import { useQuery } from '@tanstack/react-query';
-import { getGroups } from '../../api/groups';
+import { useState } from 'react';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
+
 import GroupCard from './GroupCard';
 import NoDataDisplay from '../../components/NoDataDisplay';
+import Pagination from '../../components/Pagination';
+import Icon from '../../components/Icon';
+
+import { IoSearchSharp } from 'react-icons/io5';
+import { getGroups } from '../../api/groups';
 
 function LoadingSkeleton() {
   return (
@@ -23,9 +27,12 @@ function LoadingSkeleton() {
 }
 
 export default function Search() {
-  const { isLoading, isError, data } = useQuery({
-    queryKey: ['groups'],
-    queryFn: getGroups,
+  const [page, setPage] = useState(1);
+
+  const { isLoading, isError, data, isPlaceholderData } = useQuery({
+    queryKey: ['groups', page],
+    queryFn: () => getGroups(page, 3),
+    placeholderData: keepPreviousData,
   });
 
   const skeletonCount = 21;
@@ -48,24 +55,35 @@ export default function Search() {
           </button>
         </div>
       </form>
-      <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+      <div>
         {
           // TOOD: Create a new component for this mess
           isError ? (
             <p>Error!</p>
           ) : isLoading ? (
-            Array.from({ length: skeletonCount }).map((_, index) => (
-              <LoadingSkeleton key={index} />
-            ))
+            <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+              {Array.from({ length: skeletonCount }).map((_, index) => (
+                <LoadingSkeleton key={index} />
+              ))}
+            </div>
           ) : data.data.groups.length === 0 ? (
             <NoDataDisplay
               top="No Groups Found!"
               bottom="This should never have happened, but it did..."
             />
           ) : (
-            data.data.groups.map((data) => {
-              return <GroupCard data={data} key={data._id} />;
-            })
+            <div>
+              <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+                {data.data.groups.results.map((data) => {
+                  return <GroupCard data={data} key={data._id} />;
+                })}
+              </div>
+              <Pagination
+                currentPage={page}
+                totalPages={data.data.groups.totalPages}
+                setPage={setPage}
+              />
+            </div>
           )
         }
       </div>

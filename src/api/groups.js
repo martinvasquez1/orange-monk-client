@@ -1,7 +1,9 @@
 import axiosInstance from './axiosInstance';
 
-export function getGroups() {
-  return axiosInstance.get(`/groups`).then((res) => res.data);
+export function getGroups(page = 1, limit = 20) {
+  return axiosInstance
+    .get(`/groups/`, { params: { page: page, limit: limit } })
+    .then((res) => res.data);
 }
 
 export function getGroup(id) {
