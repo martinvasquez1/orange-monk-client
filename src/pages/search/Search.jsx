@@ -31,7 +31,7 @@ export default function Search() {
 
   const { isLoading, isError, data, isPlaceholderData } = useQuery({
     queryKey: ['groups', page],
-    queryFn: () => getGroups(page, 3),
+    queryFn: () => getGroups(page, 18),
     placeholderData: keepPreviousData,
   });
 
@@ -80,8 +80,8 @@ export default function Search() {
               </div>
               <Pagination
                 currentPage={page}
-                totalPages={data.data.groups.totalPages}
                 setPage={setPage}
+                totalPages={data.data.groups.totalPages}
               />
             </div>
           )

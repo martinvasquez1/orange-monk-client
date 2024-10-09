@@ -1,4 +1,4 @@
-export default function Pagination({ currentPage, totalPages, setPage }) {
+export default function Pagination({ currentPage, setPage, totalPages }) {
   const amountOfButtons = 7;
   const offset = Math.floor(amountOfButtons / 2);
 
@@ -11,8 +11,10 @@ export default function Pagination({ currentPage, totalPages, setPage }) {
     initialPage = currentPage - offset;
   }
 
+  if (totalPages === 1) return null;
+
   return (
-    <div className="join">
+    <div className="join my-8 flex w-full justify-center">
       {Array.from({ length: amountOfButtons }).map((_, index) => {
         const pageNumber = initialPage + index;
 
@@ -20,9 +22,12 @@ export default function Pagination({ currentPage, totalPages, setPage }) {
 
         return (
           <button
-            className={`btn join-item ${currentPage === pageNumber ? 'btn-primary' : ''}`}
+            className={`btn join-item ${currentPage === pageNumber ? 'btn-primary border-primary' : 'bg-base-100'} min-w-14 border-base-100`}
             key={index}
-            onClick={() => setPage(pageNumber)}
+            onClick={() => {
+              setPage(pageNumber);
+              console.log('Set page ', pageNumber);
+            }}
           >
             {pageNumber}
           </button>
