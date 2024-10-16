@@ -20,7 +20,8 @@ import GroupLayout from './components/GroupLayout.jsx';
 import Group from './pages/group/Group.jsx';
 import Post from './pages/post/Post.jsx';
 import PostCreate from './pages/post/PostCreate.jsx';
-import GroupAbout from './pages/GroupAbout.jsx';
+import GroupAbout from './pages/about/GroupAbout.jsx';
+import GroupEdit from './pages/about/GroupEdit.jsx';
 import Members from './pages/members/Members.jsx';
 import Rooms from './pages/rooms/Rooms.jsx';
 
@@ -49,6 +50,7 @@ export default function Router() {
               <Route path="create-post" element={<PostCreate />} />
               <Route path="rooms" element={<Rooms />} />
               <Route path="about" element={<GroupAbout />} />
+              <Route path="edit" element={<GroupEdit />} />
               <Route path="members" element={<Members />} />
             </Route>
           </Route>
