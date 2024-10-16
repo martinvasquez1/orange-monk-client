@@ -2,9 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getGroup } from '../api/groups';
 
+import Dropdown from './Dropdown';
 import Icon from './Icon';
+import LeaveModal from './LeaveModal';
 import { NavLink } from 'react-router-dom';
 import { SlOptionsVertical } from 'react-icons/sl';
+import { FaDoorOpen } from 'react-icons/fa6';
 
 function LoadingSkeleton({ buttonsData }) {
   return (
@@ -62,6 +65,7 @@ export default function GroupOverview() {
   if (isError) return 'Error!';
 
   const groupData = data.data.group;
+  const leaveModalId = 'leave-moda-id';
 
   return (
     <div className="rounded-2xl bg-base-100 shadow">
@@ -80,9 +84,25 @@ export default function GroupOverview() {
           </div>
         </div>
         <div>
-          <button type="button" className="btn btn-ghost">
-            <Icon icon={<SlOptionsVertical />} />
-          </button>
+          <Dropdown
+            trigger={
+              <div tabIndex={0} role="button" className="btn btn-ghost m-1">
+                <Icon icon={<SlOptionsVertical />} />
+              </div>
+            }
+          >
+            <button
+              className="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                document.getElementById(leaveModalId).showModal();
+              }}
+            >
+              <Icon icon={<FaDoorOpen />} />
+              <span>Leave</span>
+            </button>
+          </Dropdown>
+          <LeaveModal modalId={leaveModalId} groupId={groupId} />
         </div>
       </div>
       <div className="px-4 pb-2">
