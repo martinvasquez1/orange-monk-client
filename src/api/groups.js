@@ -16,6 +16,31 @@ export function createGroup({ name, description, isPrivate, owner }) {
     .then((res) => res.data);
 }
 
+export function updateGroup({
+  groupId,
+  name,
+  description,
+  isPrivate,
+  owner,
+  sidebarContent,
+  previewImage,
+  bannerImage,
+  theme,
+}) {
+  return axiosInstance
+    .put(`/groups/${groupId}`, {
+      name,
+      description,
+      isPrivate,
+      owner,
+      sidebarContent,
+      previewImage,
+      bannerImage,
+      theme,
+    })
+    .then((res) => res.data);
+}
+
 export function getGroupPosts(id, page = 1, limit = 15) {
   return axiosInstance
     .get(`/groups/${id}/posts`, { params: { page: page, limit: limit } })
