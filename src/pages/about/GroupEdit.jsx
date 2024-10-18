@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { updateGroup } from './../../api/groups';
-import InputImage from '../../components/InputImage';
+import ImageInput from '../../components/ImageInput';
 
 const themes = [
   'dark',
@@ -62,6 +62,7 @@ export default function GroupEdit({}) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('Sibmit!');
     // mutation.mutate({ groupId, name, description, isPrivate, sidebarContent, previewImage, bannerImage, theme});
   }
 
@@ -103,12 +104,12 @@ export default function GroupEdit({}) {
           ></textarea>
         </label>
 
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <InputImage
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <ImageInput
             labelText="Pick a preview image"
             setImage={setPreviewImage}
           />
-          <InputImage
+          <ImageInput
             labelText="Pick a banner image"
             setImage={setBannerImage}
           />
