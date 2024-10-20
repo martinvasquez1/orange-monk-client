@@ -3,9 +3,9 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 import Pagination from '../../components/Pagination';
+import UserAvatar from './../../components/UserAvatar';
 import Icon from './../../components/Icon';
 import { getGroupUsers } from '../../api/groups';
-
 import { SlOptionsVertical } from 'react-icons/sl';
 
 function capitalizeFirstLetter(string) {
@@ -58,15 +58,10 @@ export default function Members() {
                 <tr key={user._id}>
                   <td className="pl-0">
                     <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                            className="skeleton"
-                          />
-                        </div>
-                      </div>
-                      <div className="font-bold">{user.user.username}</div>
+                      <UserAvatar
+                        url={user.user.profilePicture}
+                        username={user.user.username}
+                      />
                     </div>
                   </td>
                   <td>{memberSince}</td>

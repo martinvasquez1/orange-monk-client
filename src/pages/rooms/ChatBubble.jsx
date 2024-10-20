@@ -1,3 +1,5 @@
+import UserAvatar from './../../components/UserAvatar';
+
 export default function ChatBubble({ data, prev, loggedInUser }) {
   const date = new Date(data.time);
   const time = date.toLocaleTimeString([], {
@@ -28,12 +30,11 @@ export default function ChatBubble({ data, prev, loggedInUser }) {
       className={`chat ${data.username === loggedInUser ? 'chat-end' : 'chat-start'}`}
     >
       <div className="avatar chat-image">
-        <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS chat bubble component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-          />
-        </div>
+        <UserAvatar
+          url={data.profilePicture}
+          username={data.username}
+          hideUsername={true}
+        />
       </div>
       <div className="chat-header">
         {data.username}

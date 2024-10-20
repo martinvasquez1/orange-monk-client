@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 
 import VideoPlayer from '../../components/VideoPlayer';
 import PostOptionsButton from '../post/PostOptionsButton';
+import UserAvatar from '../../components/UserAvatar';
 import Icon from '../../components/Icon';
 import { GoComment, GoHeart } from 'react-icons/go';
 
@@ -19,14 +20,11 @@ export default function PostPreview({ data }) {
   return (
     <div className="block rounded-2xl bg-base-100 px-4 py-4 shadow">
       <div className="flex justify-between">
-        <div className="flex items-center gap-4">
-          <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Profile picture."
-            className="h-10 w-10 rounded-full"
-          />
-          <div className="text-lg">{data.author.username}</div>
-        </div>
+        <UserAvatar
+          url={data.author.profilePicture}
+          username={data.author.username}
+          color={data.author.placeholderColor}
+        />
         {isUserPost && <PostOptionsButton postId={data._id} />}
       </div>
       <Link to={`post/${data._id}`}>

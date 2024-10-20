@@ -1,10 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
+import { getUser } from './../api/users';
+import { jwtDecode } from 'jwt-decode';
+
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import ThemeController from './ThemeController';
+import UserAvatar from './UserAvatar';
 
 export default function AppNavbar() {
   const navigate = useNavigate();
+
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['users', userId],
+    queryFn: () => getUser(userId),
+  });
 
   function handleLogout() {
     localStorage.removeItem('jwt');
@@ -21,17 +32,20 @@ export default function AppNavbar() {
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="avatar btn btn-circle btn-ghost"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+          <div tabIndex={0} role="button">
+            {isLoading ? (
+              <div
+                alt="Profile picture."
+                className="skeleton h-10 w-10 rounded-full bg-base-300"
+              ></div>
+            ) : (
+              <UserAvatar
+                url={data.data.user.profilePicture}
+                username={data.data.user.username}
+                color={data.data.user.placeholderColor}
+                hideUsername={true}
               />
-            </div>
+            )}
           </div>
           <ul
             tabIndex={0}

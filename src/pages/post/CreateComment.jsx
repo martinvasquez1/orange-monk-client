@@ -1,14 +1,24 @@
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { createComment } from '../../api/comments';
 import { jwtDecode } from 'jwt-decode';
+
+import { getUser } from './../../api/users';
+import { createComment } from '../../api/comments';
+
+import UserAvatar from './../../components/UserAvatar';
 
 export default function CreateComment() {
   const [content, setContent] = useState('');
 
   const queryClient = useQueryClient();
   const { postId } = useParams();
+
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['users', userId],
+    queryFn: () => getUser(userId),
+  });
 
   const mutation = useMutation({
     mutationFn: createComment,
@@ -29,10 +39,14 @@ export default function CreateComment() {
 
   return (
     <div className="flex gap-4">
-      <img
-        src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        className="skeleton h-10 w-10 rounded-full"
-      />
+      <div>
+        <UserAvatar
+          url={data?.data.user.profilePicture}
+          username={data?.data.user.username}
+          color={data?.data.user.placeholderColor}
+          hideUsername={true}
+        />
+      </div>
       <form className="w-full" onSubmit={handleSubmit}>
         <textarea
           className="textarea textarea-bordered w-full"
