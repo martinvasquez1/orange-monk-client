@@ -1,7 +1,4 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { getGroup } from '../api/groups';
-
+a;
 import Dropdown from './Dropdown';
 import Icon from './Icon';
 import LeaveModal from './LeaveModal';
@@ -71,18 +68,13 @@ export default function GroupOverview() {
     <div className="rounded-2xl bg-base-100 shadow">
       <img
         src={
-          groupData.overviewImage ||
+          groupData.bannerImage ||
           ' https://images.unsplash.com/photo-1526715875108-ed5fa46df641?q=80&w=1495&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         }
         className="skeleton h-52 w-full rounded-bl-none rounded-br-none rounded-tl-2xl rounded-tr-2xl object-cover"
       />
-      <div className="mt-8 flex justify-between p-4">
-        <div>
-          <div className="text-3xl font-bold">{groupData.name}</div>
-          <div className="mt-2 text-sm text-base-content/70">
-            {groupData.description}
-          </div>
-        </div>
+      <div className="mt-2 flex items-center justify-between p-4">
+        <div className="text-3xl font-bold">{groupData.name}</div>
         <div>
           <Dropdown
             trigger={
