@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
-import { updateGroup } from './../../api/groups';
+import { getGroup, updateGroup } from './../../api/groups';
 import ImageInput from '../../components/ImageInput';
 
 const themes = [
@@ -44,13 +44,18 @@ export default function GroupEdit({}) {
   const [description, setDescription] = useState('');
   const [isPrivate, setIsPrivate] = useState(false);
   const [sidebar, setSidebar] = useState('');
-  const [theme, setTheme] = useState('');
-  const [previewImage, setPreviewImage] = useState('');
-  const [bannerImage, setBannerImage] = useState('');
+  const [theme, setTheme] = useState('Choose a theme');
+  const [previewImage, setPreviewImage] = useState(null);
+  const [bannerImage, setBannerImage] = useState(null);
 
   const { groupId } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['groups', groupId],
+    queryFn: () => getGroup(groupId),
+  });
 
   const mutation = useMutation({
     mutationFn: updateGroup,
@@ -62,9 +67,38 @@ export default function GroupEdit({}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('Sibmit!');
-    // mutation.mutate({ groupId, name, description, isPrivate, sidebarContent, previewImage, bannerImage, theme});
+
+    const group = data.data.group;
+    const dataToSend = {
+      groupId,
+      name,
+      description,
+      isPrivate,
+      sidebar,
+      theme,
+      previewImage: previewImage ? previewImage : group.previewImage,
+      bannerImage: bannerImage ? bannerImage : group.bannerImage,
+    };
+
+    mutation.mutate(dataToSend);
   }
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+
+    const group = data.data.group;
+    setName(group.name);
+    setDescription(group.description);
+    setIsPrivate(group.private);
+    setSidebar(group.sidebar);
+    setTheme(group.theme);
+    setIsPrivate(group.private);
+  }, [data]);
+
+  if (isLoading) return 'Loading...';
+  if (isError) return 'Error!';
 
   return (
     <div className="rounded-2xl bg-base-100 p-4 shadow">
@@ -122,7 +156,7 @@ export default function GroupEdit({}) {
           <select
             className="select select-bordered"
             onChange={(e) => setTheme(e.target.value)}
-            defaultValue={'Choose a theme'}
+            value={theme}
           >
             <option disabled>Choose a theme</option>
             {themes.map((theme) => {
@@ -145,6 +179,7 @@ export default function GroupEdit({}) {
                 name="radio-10"
                 className="radio checked:bg-primary"
                 onChange={(e) => setIsPrivate(false)}
+                checked={!isPrivate}
               />
             </label>
           </div>
@@ -156,6 +191,7 @@ export default function GroupEdit({}) {
                 name="radio-10"
                 className="radio checked:bg-primary"
                 onChange={(e) => setIsPrivate(true)}
+                checked={isPrivate}
               />
             </label>
           </div>
