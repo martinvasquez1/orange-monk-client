@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import AuthRoute from './components/AuthRoute.jsx';
+import ThemeSwitcher from './components/ThemeSwitcher.jsx';
 
 import Layout from './components/Layout.jsx';
 import Landing from './pages/Landing.jsx';
@@ -31,37 +32,39 @@ export default function Router() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/app"
-            element={
-              <AuthRoute>
-                <AppLayout />
-              </AuthRoute>
-            }
-          >
-            <Route index element={<Home />} />
-            <Route path="profile/:profileId" element={<Profile />} />
-            <Route path="search/" element={<Search />} />
-            <Route path="create-group" element={<CreateGroup />} />
-            <Route path="group/:groupId" element={<GroupLayout />}>
-              <Route index element={<Group />} />
-              <Route path="post/:postId" element={<Post />} />
-              <Route path="create-post" element={<PostCreate />} />
-              <Route path="rooms" element={<Rooms />} />
-              <Route path="about" element={<GroupAbout />} />
-              <Route path="edit" element={<GroupEdit />} />
-              <Route path="members" element={<Members />} />
+        <ThemeSwitcher>
+          <Routes>
+            <Route
+              path="/app"
+              element={
+                <AuthRoute>
+                  <AppLayout />
+                </AuthRoute>
+              }
+            >
+              <Route index element={<Home />} />
+              <Route path="profile/:profileId" element={<Profile />} />
+              <Route path="search/" element={<Search />} />
+              <Route path="create-group" element={<CreateGroup />} />
+              <Route path="group/:groupId" element={<GroupLayout />}>
+                <Route index element={<Group />} />
+                <Route path="post/:postId" element={<Post />} />
+                <Route path="create-post" element={<PostCreate />} />
+                <Route path="rooms" element={<Rooms />} />
+                <Route path="about" element={<GroupAbout />} />
+                <Route path="edit" element={<GroupEdit />} />
+                <Route path="members" element={<Members />} />
+              </Route>
             </Route>
-          </Route>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Landing />} />
-            <Route path="about" element={<About />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-in" element={<SignIn />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Landing />} />
+              <Route path="about" element={<About />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="sign-in" element={<SignIn />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ThemeSwitcher>
       </BrowserRouter>
     </QueryClientProvider>
   );

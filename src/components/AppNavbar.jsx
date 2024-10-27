@@ -5,7 +5,6 @@ import { jwtDecode } from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
-import ThemeController from './ThemeController';
 import UserAvatar from './UserAvatar';
 
 export default function AppNavbar() {
@@ -28,7 +27,6 @@ export default function AppNavbar() {
         <Link to="/app">
           <Logo />
         </Link>
-        <ThemeController />
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
