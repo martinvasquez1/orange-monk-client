@@ -55,7 +55,7 @@ export function getGroupUsers(id, page = 1, limit = 15) {
 
 export function joinGroup({ id, userId }) {
   return axiosInstance
-    .post(`/groups/${id}/join`, { userId })
+    .post(`/groups/${id}/join-requests/`, { userId })
     .then((res) => res.data);
 }
 

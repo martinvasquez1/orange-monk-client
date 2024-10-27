@@ -1,7 +1,10 @@
-a;
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getGroup } from './../api/groups';
+
 import Dropdown from './Dropdown';
-import Icon from './Icon';
 import LeaveModal from './LeaveModal';
+import Icon from './Icon';
 import { NavLink } from 'react-router-dom';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { FaDoorOpen } from 'react-icons/fa6';
