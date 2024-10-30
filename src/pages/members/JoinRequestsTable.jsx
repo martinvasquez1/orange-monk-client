@@ -27,7 +27,9 @@ export default function JoinRequestsTable({}) {
   const requests = data.data.results;
 
   if (requests.length === 0) {
-    return <NoDataDisplay top="No join requests" bottom="..." />;
+    return (
+      <NoDataDisplay top="No join requests" bottom="..." noBackground={true} />
+    );
   }
 
   return (
