@@ -28,24 +28,36 @@ function LoadingSkeleton() {
 
 export default function Search() {
   const [page, setPage] = useState(1);
+  const [inputValue, setInputValue] = useState('');
+  const [query, setQuery] = useState('');
 
   const { isLoading, isError, data, isPlaceholderData } = useQuery({
-    queryKey: ['groups', page],
-    queryFn: () => getGroups(page, 18),
+    queryKey: ['groups', page, query],
+    queryFn: () => getGroups(page, 18, query),
     placeholderData: keepPreviousData,
   });
 
   const skeletonCount = 21;
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setQuery(inputValue);
+    setPage(1);
+  }
+
+  if (isLoading || isError) return 'wait';
+  console.log(data.data.results.length);
+
   return (
     <div className="rounded-2xl">
       <h1 className="text-3xl font-bold">Search groups</h1>
-      <form onSubmit={(e) => e.preventDefault()} className="mt-4">
+      <form onSubmit={handleSubmit} className="mt-4">
         <div className="flex">
           <input
             type="text"
             placeholder="Type here"
             className="input input-bordered w-full rounded-none rounded-bl-2xl rounded-tl-2xl"
+            onChange={(e) => setInputValue(e.target.value)}
           />
           <button
             type="submit"
@@ -67,10 +79,7 @@ export default function Search() {
               ))}
             </div>
           ) : data.data.results.length === 0 ? (
-            <NoDataDisplay
-              top="No Groups Found!"
-              bottom="This should never have happened, but it did..."
-            />
+            <NoDataDisplay top="No Groups Found!" bottom="..." />
           ) : (
             <div>
               <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
