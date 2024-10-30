@@ -25,7 +25,7 @@ export default function ThemeSwitcher({ children }) {
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
-  }, [path]);
+  }, [path, data]);
 
   return children;
 }
