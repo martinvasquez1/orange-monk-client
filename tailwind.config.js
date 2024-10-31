@@ -21,7 +21,7 @@ export default {
           info: '#1c92f2',
           success: '#009485',
           warning: '#ff9900',
-          error: '#ff5724',
+          error: '#FF5861',
         },
       },
       'dark',

@@ -41,6 +41,10 @@ export function updateGroup({
     .then((res) => res.data);
 }
 
+export function deleteGroup(id) {
+  return axiosInstance.delete(`/groups/${id}`).then((res) => res.data);
+}
+
 export function getGroupPosts(id, page = 1, limit = 15) {
   return axiosInstance
     .get(`/groups/${id}/posts`, { params: { page: page, limit: limit } })
