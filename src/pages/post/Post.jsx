@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import { useQuery } from '@tanstack/react-query';
-import { getPost, updatePost } from '../../api/posts';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import { getPost, updatePost } from '../../api/posts';
 
 import CommentsSection from './CommentsSection';
 import PostSkeleton from './../../components/PostSkeleton';
 import PostOptionsButton from './PostOptionsButton';
 import PostForm from './PostForm';
 import UserAvatar from './../../components/UserAvatar';
-import Icon from '../../components/Icon';
-import { GoComment, GoHeart } from 'react-icons/go';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import PostStats from './PostStats';
 
 export default function Post() {
   const [title, setTitle] = useState('');
@@ -93,20 +91,7 @@ export default function Post() {
             </>
           )}
         </div>
-        <div className="mt-4 flex gap-4">
-          <button
-            type="button"
-            onClick={(e) => e.preventDefault()}
-            className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
-          >
-            <Icon icon={<GoHeart />} />
-            <span>13</span>
-          </button>
-          <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
-            <Icon icon={<GoComment />} />
-            <span>{postData.comments.length}</span>
-          </div>
-        </div>
+        <PostStats data={postData} />
       </div>
       <CommentsSection />
     </>

@@ -4,8 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import VideoPlayer from '../../components/VideoPlayer';
 import PostOptionsButton from '../post/PostOptionsButton';
 import UserAvatar from '../../components/UserAvatar';
-import Icon from '../../components/Icon';
-import { GoComment, GoHeart } from 'react-icons/go';
+import PostStats from '../post/PostStats';
 
 export default function PostPreview({ data }) {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
@@ -35,23 +34,7 @@ export default function PostPreview({ data }) {
           </h2>
           {hasYoutubeUrl && <VideoPlayer id={videoId} />}
         </div>
-        <div className="mt-4 flex gap-4">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-            }}
-            className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
-          >
-            <Icon icon={<GoHeart />} />
-            <span>13</span>
-          </button>
-          <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
-            <Icon icon={<GoComment />} />
-            <span>{data.comments.length}</span>
-          </div>
-        </div>
+        <PostStats data={data} />
       </Link>
     </div>
   );

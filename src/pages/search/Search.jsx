@@ -46,7 +46,6 @@ export default function Search() {
   }
 
   if (isLoading || isError) return 'wait';
-  console.log(data.data.results.length);
 
   return (
     <div className="rounded-2xl">
