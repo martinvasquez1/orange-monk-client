@@ -34,7 +34,7 @@ export default function Search() {
 
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
 
-  const { isLoading, isError, data, isPlaceholderData } = useQuery({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ['groups', page, query],
     queryFn: () => getGroups(page, 18, query, true, userId),
     placeholderData: keepPreviousData,

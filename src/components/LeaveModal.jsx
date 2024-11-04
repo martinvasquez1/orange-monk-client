@@ -15,6 +15,9 @@ export default function LeaveModal({ modalId, groupId, navigateTo = '/app' }) {
       queryClient.invalidateQueries({
         queryKey: ['groups', groupId],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['groups'],
+      });
       document.getElementById(modalId).close();
       navigate(navigateTo);
     },

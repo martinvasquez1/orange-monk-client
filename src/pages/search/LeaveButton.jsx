@@ -1,7 +1,7 @@
 import LeaveModal from '../../components/LeaveModal';
 
 export default function LeaveButton({ groupId }) {
-  const leaveModalId = 'leave-modal-button-id';
+  const leaveModalId = 'leave-modal-button-id' + groupId;
 
   return (
     <>
