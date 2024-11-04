@@ -1,8 +1,22 @@
 import axiosInstance from './axiosInstance';
 
-export function getGroups(page = 1, limit = 20, name) {
+export function getGroups(
+  page = 1,
+  limit = 20,
+  name,
+  userJoined = false,
+  userId,
+) {
   return axiosInstance
-    .get(`/groups/`, { params: { page: page, limit: limit, name: name } })
+    .get(`/groups/`, {
+      params: {
+        page: page,
+        limit: limit,
+        name: name,
+        userJoined: userJoined,
+        userId: userId,
+      },
+    })
     .then((res) => res.data);
 }
 

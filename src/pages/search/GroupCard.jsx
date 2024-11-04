@@ -3,6 +3,7 @@ import { joinGroup } from '../../api/groups';
 import { jwtDecode } from 'jwt-decode';
 
 import GroupIcon from '../../components/GroupIcon';
+import LeaveButton from './LeaveButton';
 
 export default function GroupCard({ data }) {
   const mutation = useMutation({
@@ -35,11 +36,15 @@ export default function GroupCard({ data }) {
             {data.description}
           </p>
         </div>
-        <form onSubmit={handleSubmit}>
-          <button type="submit" className="btn">
-            Join
-          </button>
-        </form>
+        {!data.isJoined ? (
+          <form onSubmit={handleSubmit}>
+            <button type="submit" className="btn btn-primary">
+              Join
+            </button>
+          </form>
+        ) : (
+          <LeaveButton groupId={data._id} />
+        )}
       </div>
     </div>
   );

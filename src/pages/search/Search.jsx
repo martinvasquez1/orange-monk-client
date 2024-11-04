@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { jwtDecode } from 'jwt-decode';
 
 import GroupCard from './GroupCard';
 import NoDataDisplay from '../../components/NoDataDisplay';
@@ -31,9 +32,11 @@ export default function Search() {
   const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
 
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
+
   const { isLoading, isError, data, isPlaceholderData } = useQuery({
     queryKey: ['groups', page, query],
-    queryFn: () => getGroups(page, 18, query),
+    queryFn: () => getGroups(page, 18, query, true, userId),
     placeholderData: keepPreviousData,
   });
 
@@ -78,7 +81,9 @@ export default function Search() {
               ))}
             </div>
           ) : data.data.results.length === 0 ? (
-            <NoDataDisplay top="No Groups Found!" bottom="..." />
+            <div className="mt-8">
+              <NoDataDisplay top="No Groups Found!" bottom="..." />
+            </div>
           ) : (
             <div>
               <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">

@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { leaveGroup } from '../api/groups';
 import Modal from './../components/Modal';
 
-export default function LeaveModal({ modalId, groupId }) {
+export default function LeaveModal({ modalId, groupId, navigateTo = '/app' }) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export default function LeaveModal({ modalId, groupId }) {
         queryKey: ['groups', groupId],
       });
       document.getElementById(modalId).close();
-      navigate(`/app`);
+      navigate(navigateTo);
     },
   });
 

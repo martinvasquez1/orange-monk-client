@@ -11,7 +11,7 @@ export default {
       {
         monk: {
           primary: '#570df8',
-          secondary: '#ff0000',
+          secondary: '#DC185D',
           accent: '#1a73e8',
           neutral: '#dbdbdb',
           'base-100': '#ffffff',
