@@ -15,7 +15,7 @@ export default function Members() {
   if (isLoading) return 'Loading...';
   if (isError) return 'Error!';
 
-  const isPublic = !data.data.group.private;
+  const isPrivate = data.data.group.private;
 
   return (
     <div className="flex flex-col gap-4">
@@ -23,7 +23,7 @@ export default function Members() {
         <h2 className="text-xl font-bold">Members</h2>
         <MembersTable />
       </div>
-      {isPublic && (
+      {isPrivate && (
         <div className="rounded-2xl bg-base-100 p-4 px-6 shadow">
           <h2 className="text-xl font-bold">Join Requests</h2>
           <JoinRequestsTable />

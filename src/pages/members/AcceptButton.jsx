@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { acceptJoinRequest } from '../../api/joinRequests';
 import { useParams } from 'react-router-dom';
 
@@ -6,23 +6,23 @@ import Icon from './../../components/Icon';
 import { FaCheck } from 'react-icons/fa6';
 
 export default function AcceptButton({ requestId }) {
-  const { id } = useParams();
+  const { groupId } = useParams();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: acceptJoinRequest,
     onSuccess: () => {
-      // TODO: Doesn't work :(
       queryClient.invalidateQueries({
-        queryKey: ['groups', id, 'join-requests'],
+        queryKey: ['groups', groupId, 'join-requests'],
       });
       queryClient.invalidateQueries({
-        queryKey: ['groups', id, 'users'],
+        queryKey: ['groups', groupId, 'users'],
       });
     },
   });
 
   function handleClick() {
-    mutation.mutate({ groupId: id, requestId });
+    mutation.mutate({ groupId: groupId, requestId });
   }
 
   return (

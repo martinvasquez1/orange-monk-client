@@ -15,7 +15,7 @@ export default function JoinRequestsTable({}) {
   const { groupId } = useParams();
   const id = groupId;
 
-  const { isLoading, isError, data, isPlaceholderData } = useQuery({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ['groups', id, 'join-requests', page],
     queryFn: () => getJoinRequests(id, page, 10),
     placeholderData: keepPreviousData,
@@ -28,12 +28,19 @@ export default function JoinRequestsTable({}) {
 
   if (requests.length === 0) {
     return (
-      <NoDataDisplay top="No join requests" bottom="..." noBackground={true} />
+      <div className="py-32">
+        <NoDataDisplay
+          top="No join requests"
+          bottom="..."
+          noBackground={true}
+          noPadding={true}
+        />
+      </div>
     );
   }
 
   return (
-    <div className="mt-4 overflow-x-auto">
+    <div className="mt-4 min-h-[16rem] overflow-x-auto text-base-content/90">
       {requests.map((request) => {
         return (
           <div className="flex justify-between gap-4" key={request._id}>
