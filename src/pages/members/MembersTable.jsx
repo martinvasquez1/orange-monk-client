@@ -27,7 +27,7 @@ export default function MembersTable({}) {
   const users = data.data.results;
 
   return (
-    <div className="mt-4 overflow-x-auto">
+    <div className="mt-4 min-h-[16rem] overflow-x-auto">
       <table className="table">
         <thead>
           <tr>
