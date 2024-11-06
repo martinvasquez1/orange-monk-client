@@ -3,6 +3,14 @@ import Icon from './../../components/Icon';
 import { HiPencil } from 'react-icons/hi2';
 
 export default function PublicAbout({ group }) {
+  const dateObject = new Date(group.createdAt);
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  };
+  const createdAt = dateObject.toLocaleDateString('en-US', options);
+
   return (
     <div className="rounded-2xl bg-base-100 p-4 shadow">
       <div className="flex items-center justify-between">
@@ -16,7 +24,7 @@ export default function PublicAbout({ group }) {
         This group is <strong>{group.private ? 'Private' : 'Public'}</strong>.
       </p>
       <p className="mt-2">
-        <span className="font-bold">Created at:</span> {group.createdAt}
+        <span className="font-bold">Created at:</span> {createdAt}
       </p>
     </div>
   );
