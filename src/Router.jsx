@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/home/Home.jsx';
 import Profile from './pages/Profile.jsx';
+import Settings from './pages/settings/Settings.jsx'
 import Search from './pages/search/Search.jsx';
 import CreateGroup from './pages/CreateGroup.jsx';
 
@@ -44,6 +45,7 @@ export default function Router() {
             >
               <Route index element={<Home />} />
               <Route path="profile/:profileId" element={<Profile />} />
+              <Route path="settings/" element={<Settings />} />
               <Route path="search/" element={<Search />} />
               <Route path="create-group" element={<CreateGroup />} />
               <Route path="group/:groupId" element={<GroupLayout />}>

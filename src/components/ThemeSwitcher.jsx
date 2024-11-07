@@ -19,6 +19,9 @@ export default function ThemeSwitcher({ children }) {
 
   useEffect(() => {
     if (path.startsWith('/app/group')) {
+      const disableThemeSwitch = localStorage.getItem('disableThemeSwitch');
+      if (disableThemeSwitch === 'true') return;
+
       refetch();
       const theme = data?.data?.group?.theme;
       document.documentElement.setAttribute('data-theme', theme);
