@@ -55,6 +55,11 @@ export default function AppNavbar() {
               </Link>
             </li>
             <li>
+              <Link to="/app/settings" className="justify-between py-1">
+                Settings
+              </Link>
+            </li>
+            <li>
               <button type="button" onClick={handleLogout}>
                 Logout
               </button>
