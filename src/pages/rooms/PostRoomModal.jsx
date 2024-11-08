@@ -50,6 +50,7 @@ export default function PostRoomModal({ id, commentId, authorId }) {
             type="button"
             className="btn btn-ghost"
             disabled={mutation.isPending}
+            onClick={() => document.getElementById(id).close()}
           >
             Cancel
           </button>

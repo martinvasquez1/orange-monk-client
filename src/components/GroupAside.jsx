@@ -19,7 +19,7 @@ export default function GroupAside() {
       <div className="rounded-2xl bg-base-100 p-4 shadow">
         {group.sidebar ? (
           <>
-            <h3 className="text-lg font-bold">Title</h3>
+            <h3 className="text-lg font-bold">Information</h3>
             <p className="mt-4 text-base-content/70">{group.sidebar}</p>
           </>
         ) : (

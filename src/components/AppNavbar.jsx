@@ -61,7 +61,7 @@ export default function AppNavbar() {
             </li>
             <li>
               <button type="button" onClick={handleLogout}>
-                Logout
+                Log out
               </button>
             </li>
           </ul>

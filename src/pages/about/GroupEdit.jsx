@@ -198,7 +198,12 @@ export default function GroupEdit({}) {
         </div>
 
         <div className="mt-4 flex justify-end gap-4">
-          <button type="button" className="btn" disabled={mutation.isPending}>
+          <button
+            type="button"
+            className="btn"
+            disabled={mutation.isPending}
+            onClick={() => navigate(`/app/group/${groupId}/about`)}
+          >
             Cancel
           </button>
           <button

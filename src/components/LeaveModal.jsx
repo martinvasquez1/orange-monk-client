@@ -41,6 +41,7 @@ export default function LeaveModal({ modalId, groupId, navigateTo = '/app' }) {
               type="button"
               className="btn btn-ghost"
               disabled={mutation.isPending}
+              onClick={() => document.getElementById(modalId).close()}
             >
               Cancel
             </button>
