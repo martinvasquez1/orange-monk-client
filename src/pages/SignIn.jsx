@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { signIn } from '../api/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+
+import { signIn } from '../api/auth';
+import { Link } from 'react-router-dom';
 
 export default function SignIn({}) {
   const [email, setEmail] = useState('');
@@ -26,25 +28,55 @@ export default function SignIn({}) {
   }
 
   return (
-    <div>
-      <h1>Login </h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={email}
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          value={password}
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="mx-auto mb-10 max-w-md">
+      <div className="mx-8 mt-10 flex flex-col justify-center md:mt-16">
+        <h1 className="text-center text-2xl font-bold">Sign In</h1>
+        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-2">
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Email</span>
+            </div>
+            <input
+              value={email}
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Password</span>
+            </div>
+            <input
+              value={password}
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="mt-4 flex cursor-pointer items-center gap-4">
+            <input
+              type="checkbox"
+              defaultChecked
+              className="checkbox-primary checkbox"
+            />
+            <span className="label-text">Remember me</span>
+          </label>
+          <button type="submit" className="btn btn-primary mt-4">
+            Sign In
+          </button>
+        </form>
+        <p className="mt-8 text-center text-sm">
+          Don't have an account?{' '}
+          <Link to="/sign-up" className="link link-primary">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
