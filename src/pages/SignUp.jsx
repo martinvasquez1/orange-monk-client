@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { signUp } from '../api/auth';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+
+import { signUp } from '../api/auth';
 
 export default function SignUp({}) {
   const [username, setUsername] = useState('');
@@ -30,53 +31,81 @@ export default function SignUp({}) {
   }
 
   return (
-    <div>
-      <h1>Sign up for free</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col">
-        <label>
-          <span>Username</span>
-          <input
-            value={username}
-            type="username"
-            name="username"
-            onChange={(e) => setUsername(e.target.value)}
-            className="input input-bordered"
-          />
-        </label>
-        <label>
-          <span>Email</span>
-          <input
-            value={email}
-            type="email"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            className="input input-bordered"
-          />
-        </label>
-        <label>
-          <span>Password</span>
-          <input
-            value={password}
-            type="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            className="input input-bordered"
-          />
-        </label>
-        <label>
-          <span>Confirm password</span>
-          <input
-            value={confirmPassword}
-            type="confirmPassword"
-            name="confirmPassword"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="input input-bordered"
-          />
-        </label>
-        <button type="submit" disabled={mutation.isPending} className="btn">
-          {mutation.isPending ? 'Signing Up...' : 'Sign Up'}
-        </button>
-      </form>
+    <div className="mx-auto mb-10 max-w-md">
+      <div className="mx-8 mt-10 flex flex-col justify-center md:mt-16">
+        <h1 className="text-center text-2xl font-bold">Sign Up</h1>
+        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-2">
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Username</span>
+            </div>
+            <input
+              value={username}
+              type="username"
+              name="username"
+              placeholder="Enter username"
+              onChange={(e) => setUsername(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Email</span>
+            </div>
+            <input
+              value={email}
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Password</span>
+            </div>
+            <input
+              value={password}
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="form-control w-full">
+            <div className="label cursor-pointer">
+              <span className="label-text">Password confirmation</span>
+            </div>
+            <input
+              value={confirmPassword}
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </label>
+          <label className="mt-4 flex cursor-pointer items-center gap-4">
+            <input
+              type="checkbox"
+              defaultChecked
+              className="checkbox-primary checkbox"
+            />
+            <span className="label-text">Remember me</span>
+          </label>
+          <button type="submit" className="btn btn-primary mt-4">
+            Sign Up
+          </button>
+        </form>
+        <p className="mt-8 text-center text-sm">
+          Already have an account?{' '}
+          <Link to="/sign-in" className="link link-primary">
+            Sign in
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
