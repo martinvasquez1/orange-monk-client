@@ -4,6 +4,7 @@ import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
 import { getGroup, updateGroup } from './../../api/groups';
 import ImageInput from '../../components/ImageInput';
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 const themes = [
   'dark',
@@ -97,7 +98,7 @@ export default function GroupEdit({}) {
     setIsPrivate(group.private);
   }, [data]);
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return 'Error!';
 
   return (

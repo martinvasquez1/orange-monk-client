@@ -7,6 +7,7 @@ import { createPost } from '../../api/posts';
 import { getUser } from '../../api/users';
 import PostForm from './PostForm';
 import UserAvatar from '../../components/UserAvatar';
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
@@ -37,8 +38,9 @@ export default function CreatePost() {
     mutation.mutate({ title, content, author, groupId });
   }
 
-  if (isLoading) return '';
-  if (isError) return '';
+  if (isLoading) return <LoadingIndicator />;
+  if (isError) return 'Error!';
+
   const user = data.data.user;
 
   return (

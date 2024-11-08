@@ -5,6 +5,7 @@ import { getComments } from '../../api/comments';
 import Comment from './Comment.jsx';
 import CreateComment from './CreateComment.jsx';
 import NoDataDisplay from '../../components/NoDataDisplay';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 export default function CommentsSection() {
   const { postId } = useParams();
@@ -13,7 +14,7 @@ export default function CommentsSection() {
     queryFn: () => getComments(postId),
   });
 
-  if (isLoading) return <div></div>;
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return <p>Error!</p>;
 
   const comments = data.data.comments;

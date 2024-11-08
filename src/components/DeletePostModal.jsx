@@ -41,6 +41,7 @@ export default function DeletePostModal({ modalId, postId }) {
               type="button"
               className="btn btn-ghost"
               disabled={mutation.isPending}
+              onClick={() => document.getElementById(modalId).close()}
             >
               Cancel
             </button>

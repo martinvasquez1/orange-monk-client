@@ -38,6 +38,7 @@ export default function DeleteRoomModal({ id, roomId, setSelectedRoom }) {
               type="button"
               className="btn btn-ghost"
               disabled={mutation.isPending}
+              onClick={() => document.getElementById(id).close()}
             >
               Cancel
             </button>

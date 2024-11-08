@@ -8,6 +8,7 @@ import Pagination from '../../components/Pagination';
 import NoDataDisplay from './../../components/NoDataDisplay';
 import AcceptButton from './AcceptButton';
 import DenyButton from './DenyButton';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 export default function JoinRequestsTable({}) {
   const [page, setPage] = useState(1);
@@ -21,7 +22,7 @@ export default function JoinRequestsTable({}) {
     placeholderData: keepPreviousData,
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return 'Error!';
 
   const requests = data.data.results;

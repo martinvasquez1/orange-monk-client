@@ -40,15 +40,13 @@ export default function Search() {
     placeholderData: keepPreviousData,
   });
 
-  const skeletonCount = 21;
+  const skeletonCount = 18;
 
   function handleSubmit(e) {
     e.preventDefault();
     setQuery(inputValue);
     setPage(1);
   }
-
-  if (isLoading || isError) return 'wait';
 
   return (
     <div className="rounded-2xl">
@@ -71,7 +69,7 @@ export default function Search() {
       </form>
       <div>
         {
-          // TOOD: Create a new component for this mess
+          // TODO: Create a new component for this mess
           isError ? (
             <p>Error!</p>
           ) : isLoading ? (

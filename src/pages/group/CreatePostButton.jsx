@@ -4,6 +4,15 @@ import { jwtDecode } from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import UserAvatar from './../../components/UserAvatar';
 
+function LoadingSkeleton() {
+  return (
+    <div className="mb-4 flex items-center gap-4 rounded-xl bg-base-100 p-4 shadow">
+      <div className="skeleton aspect-square h-10 w-10 rounded-full object-cover"></div>
+      <div className="skeleton h-14 flex-1"></div>
+    </div>
+  );
+}
+
 export default function CreatePostButton() {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
   const { data, isLoading, isError } = useQuery({
@@ -11,7 +20,7 @@ export default function CreatePostButton() {
     queryFn: () => getUser(userId),
   });
 
-  if (isLoading) return 'Skeleton';
+  if (isLoading) return <LoadingSkeleton />;
   if (isError) return <p>Error!</p>;
 
   const user = data.data.user;

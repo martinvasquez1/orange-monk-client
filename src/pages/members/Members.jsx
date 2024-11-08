@@ -4,6 +4,7 @@ import { getGroup } from '../../api/groups';
 
 import MembersTable from './MembersTable';
 import JoinRequestsTable from './JoinRequestsTable';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 export default function Members() {
   const { groupId } = useParams();
@@ -12,7 +13,7 @@ export default function Members() {
     queryFn: () => getGroup(groupId),
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return 'Error!';
 
   const isPrivate = data.data.group.private;

@@ -13,10 +13,9 @@ function LoadingSkeleton({ buttonsData }) {
   return (
     <div className="rounded-2xl bg-base-100 shadow">
       <div className="skeleton h-52 w-full rounded-bl-none rounded-br-none rounded-tl-2xl rounded-tr-2xl"></div>
-      <div className="mt-8 flex justify-between p-4">
+      <div className="mt-4 flex justify-between p-4">
         <div className="w-full">
           <div className="skeleton h-9 w-full max-w-80"></div>
-          <div className="skeleton mt-2 h-5 w-full max-w-80"></div>
         </div>
         <div>
           <button type="button" className="btn btn-ghost">

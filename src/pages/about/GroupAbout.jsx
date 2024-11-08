@@ -4,6 +4,7 @@ import { getGroup } from './../../api/groups';
 import { useParams } from 'react-router-dom';
 import PublicAbout from './PublicAbout';
 import DeleteSection from './DeleteSection';
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default function GroupAbout() {
   const { groupId } = useParams();
@@ -13,7 +14,7 @@ export default function GroupAbout() {
     queryFn: () => getGroup(groupId),
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return <p>Error!</p>;
 
   const group = data.data.group;

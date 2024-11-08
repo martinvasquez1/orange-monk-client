@@ -13,6 +13,17 @@ export default function Home({}) {
 
   if (isError) return 'Error!';
 
+  const currentHour = new Date().getHours();
+
+  let greeting;
+  if (currentHour < 12) {
+    greeting = "Good Morning! Ready to explore what's new?";
+  } else if (currentHour < 18) {
+    greeting = 'Great to see you here';
+  } else {
+    greeting = 'Good Night! Thanks for joining us! Check out what\'s new"';
+  }
+
   return (
     <div className="rounded-2xl">
       <div className="mb-8 mt-4">
@@ -27,9 +38,7 @@ export default function Home({}) {
               <h1 className="text-3xl font-bold">
                 Welcome {data.data.user.username}!
               </h1>
-              <p className="mt-1">
-                Lorem ipsum dolor sit amet consectetur adipisicing.
-              </p>
+              <p className="mt-1">{greeting}</p>
             </div>
           )}
           <div className="flex gap-4 pt-4 md:pt-0">

@@ -2,6 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getGroup } from '../api/groups';
 
+function LoadingSkeleton() {
+  return (
+    <div className="rounded-2xl bg-base-100 p-4 shadow">
+      <h3 className="skeleton h-7"></h3>
+      <p className="skeleton mt-4 h-6 w-full"></p>
+      <p className="skeleton mt-2 h-6 w-4/5"></p>
+    </div>
+  );
+}
+
 export default function GroupAside() {
   const { groupId } = useParams();
   const { isLoading, isError, data } = useQuery({
@@ -9,7 +19,7 @@ export default function GroupAside() {
     queryFn: () => getGroup(groupId),
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <LoadingSkeleton />;
   if (isError) return 'Error!';
 
   const group = data.data.group;

@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import RoomList from './RoomList';
 import Chat from './Chat';
 import NoDataDisplay from './../../components/NoDataDisplay';
+import LoadingIndicator from '../../components/LoadingIndicator';
 import PostRoomModal from './PostRoomModal';
 
 export default function Rooms() {
@@ -34,7 +35,7 @@ export default function Rooms() {
     };
   }, []);
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return <div>Error!</div>;
 
   const rooms = data.data;

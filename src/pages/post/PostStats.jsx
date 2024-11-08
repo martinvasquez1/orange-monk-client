@@ -10,6 +10,15 @@ import { jwtDecode } from 'jwt-decode';
 import Icon from '../../components/Icon';
 import { GoComment, GoHeart, GoHeartFill } from 'react-icons/go';
 
+function LoadingSkeleton() {
+  return (
+    <div className="mt-4 flex gap-4">
+      <div className="skeleton h-12 w-20 rounded-xl bg-base-200 hover:bg-base-300"></div>
+      <div className="skeleton h-12 w-20 rounded-xl bg-base-200 hover:bg-base-300"></div>
+    </div>
+  );
+}
+
 export default function PostStats({ data }) {
   const userId = jwtDecode(localStorage.getItem('jwt')).id;
   const postId = data._id;
@@ -60,7 +69,7 @@ export default function PostStats({ data }) {
     }
   }
 
-  if (isLoading || isLoadingLikeStatus) return 'Loading...';
+  if (isLoading || isLoadingLikeStatus) return <LoadingSkeleton />;
   if (isError || isErrorLikeStatus) return 'Error!';
 
   const hasLikedPost = likeStatusData.data;

@@ -5,6 +5,8 @@ import { getGroupUsers } from '../../api/groups';
 
 import UserAvatar from './../../components/UserAvatar';
 import Pagination from '../../components/Pagination';
+import LoadingIndicator from './../../components/LoadingIndicator';
+
 import Icon from './../../components/Icon';
 import { SlOptionsVertical } from 'react-icons/sl';
 import capitalizeFirstLetter from './../../utils/capitalize';
@@ -15,13 +17,13 @@ export default function MembersTable({}) {
   const { groupId } = useParams();
   const id = groupId;
 
-  const { isLoading, isError, data, isPlaceholderData } = useQuery({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ['groups', id, 'users', page],
     queryFn: () => getGroupUsers(id, page, 10),
     placeholderData: keepPreviousData,
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <LoadingIndicator />;
   if (isError) return 'Error!';
 
   const users = data.data.results;
