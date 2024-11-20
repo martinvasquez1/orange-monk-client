@@ -1,8 +1,39 @@
-# React + Vite
+# Orange Monk Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the client for a social media web application.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React.js
+- Tailwind CSS
+- Daisy UI
+- TanStack Query
+
+## Installation
+
+Follow these step-by-step instructions to set up the project locally:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/martinvasquez1/orange-monk-client
+cd orange-monk-client
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables: Create a .env file in the root directory and add the following variables:
+
+```bash
+VITE_API_URL="your_url"
+```
+
+4. Run the application:
+
+```bash
+npm run dev
+```
