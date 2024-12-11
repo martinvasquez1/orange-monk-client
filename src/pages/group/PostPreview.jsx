@@ -17,7 +17,7 @@ export default function PostPreview({ data }) {
   const hasYoutubeUrl = videoId !== null;
 
   return (
-    <div className="block rounded-2xl bg-base-100 px-4 py-4 shadow">
+    <div className="block rounded-box bg-base-100 px-4 py-4 shadow">
       <div className="flex justify-between">
         <UserAvatar
           url={data.author.profilePicture}

@@ -79,7 +79,7 @@ export default function PostStats({ data }) {
       <button
         type="button"
         onClick={handleLike}
-        className={`flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300`}
+        className={`flex gap-2 rounded-box bg-base-200 px-4 py-3 hover:bg-base-300`}
         disabled={likeMutation.isPending || dislikeMutation.isPending}
       >
         <Icon
@@ -88,7 +88,7 @@ export default function PostStats({ data }) {
         />
         <span>{likesData.data}</span>
       </button>
-      <div className="flex gap-2 rounded-xl bg-base-200 px-4 py-3 hover:bg-base-300">
+      <div className="flex gap-2 rounded-box bg-base-200 px-4 py-3 hover:bg-base-300">
         <Icon icon={<GoComment />} />
         <span>{data.comments.length}</span>
       </div>
