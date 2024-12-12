@@ -36,7 +36,6 @@ export default function MembersTable({}) {
             <th className="pl-0">Username</th>
             <th>Member since</th>
             <th>Role</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -60,11 +59,6 @@ export default function MembersTable({}) {
                 </td>
                 <td>{memberSince}</td>
                 <td>{capitalizeFirstLetter(user.role)}</td>
-                <td className="flex justify-end">
-                  <button className="btn btn-ghost">
-                    <Icon icon={<SlOptionsVertical />} />
-                  </button>
-                </td>
               </tr>
             );
           })}

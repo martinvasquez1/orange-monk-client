@@ -27,7 +27,7 @@ export default function CreatePostButton() {
 
   return (
     <>
-      <div className="mb-4 flex items-center gap-4 rounded-xl bg-base-100 p-4 shadow">
+      <div className="mb-4 flex items-center gap-4 rounded-box bg-base-100 p-4 shadow">
         <UserAvatar
           url={user.profilePicture}
           username={user.username}
@@ -36,7 +36,7 @@ export default function CreatePostButton() {
         />
         <Link
           to="create-post"
-          className="w-full rounded-lg bg-base-200 py-4 pl-4 text-left"
+          className="w-full rounded-box bg-base-200 py-4 pl-4 text-left"
         >
           Create Post
         </Link>

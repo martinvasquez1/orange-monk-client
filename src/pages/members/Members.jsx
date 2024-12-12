@@ -20,12 +20,12 @@ export default function Members() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-2xl bg-base-100 p-4 px-6 shadow">
+      <div className="rounded-box bg-base-100 p-4 px-6 shadow">
         <h2 className="text-xl font-bold">Members</h2>
         <MembersTable />
       </div>
       {isPrivate && (
-        <div className="rounded-2xl bg-base-100 p-4 px-6 shadow">
+        <div className="rounded-box bg-base-100 p-4 px-6 shadow">
           <h2 className="text-xl font-bold">Join Requests</h2>
           <JoinRequestsTable />
         </div>

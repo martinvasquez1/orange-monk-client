@@ -21,7 +21,7 @@ export default function Home({}) {
   } else if (currentHour < 18) {
     greeting = 'Great to see you here';
   } else {
-    greeting = 'Good Night! Thanks for joining us! Check out what\'s new"';
+    greeting = 'Good Night! Check out what\'s new"';
   }
 
   return (

@@ -26,7 +26,7 @@ export default function GroupAside() {
 
   return (
     <aside className="flex flex-col gap-4">
-      <div className="rounded-2xl bg-base-100 p-4 shadow">
+      <div className="rounded-box bg-base-100 p-4 shadow">
         {group.sidebar ? (
           <>
             <h3 className="text-lg font-bold">Information</h3>
