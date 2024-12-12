@@ -46,7 +46,7 @@ export default function RoomList({
   }
 
   return (
-    <div className="flex h-[90vh] flex-col rounded-2xl bg-base-100 shadow">
+    <div className="flex h-[90vh] flex-col rounded-box bg-base-100 shadow">
       <div className="flex items-center justify-between border-b-[1px] border-base-300 px-4 py-2">
         <div className="text-2xl font-bold">{roomName}</div>
         <button

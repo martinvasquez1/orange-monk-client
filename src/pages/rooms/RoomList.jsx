@@ -38,7 +38,7 @@ export default function RoomList({
   }
 
   return (
-    <div className="h-[90vh] overflow-y-scroll rounded-2xl bg-base-100 p-4 px-6 shadow">
+    <div className="h-[90vh] overflow-y-scroll rounded-box bg-base-100 p-4 px-6 shadow">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">Room list</div>
         <button
