@@ -44,7 +44,7 @@ export default function CreatePost() {
   const user = data.data.user;
 
   return (
-    <div className="rounded-2xl bg-base-100 p-4 shadow">
+    <div className="rounded-box bg-base-100 p-4 shadow">
       <div className="mt-2 flex justify-between">
         <UserAvatar
           url={user.profilePicture}
