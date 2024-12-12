@@ -5,7 +5,7 @@ export default function DeleteSection({ group }) {
 
   return (
     <>
-      <div className="rounded-2xl bg-base-100 p-4 shadow">
+      <div className="rounded-box bg-base-100 p-4 shadow">
         <h2 className="text-xl font-bold">Delete</h2>
         <p className="mt-4 text-base-content/70">
           Deleting a group is a permanent action and <strong>cannot</strong> be

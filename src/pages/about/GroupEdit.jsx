@@ -102,7 +102,7 @@ export default function GroupEdit({}) {
   if (isError) return 'Error!';
 
   return (
-    <div className="rounded-2xl bg-base-100 p-4 shadow">
+    <div className="rounded-box bg-base-100 p-4 shadow">
       <form onSubmit={handleSubmit}>
         <h2 className="mb-2 text-xl font-bold">Update Group</h2>
         <label className="form-control w-full max-w-xs">

@@ -12,7 +12,7 @@ export default function PublicAbout({ group }) {
   const createdAt = dateObject.toLocaleDateString('en-US', options);
 
   return (
-    <div className="rounded-2xl bg-base-100 p-4 shadow">
+    <div className="rounded-box bg-base-100 p-4 shadow">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold">About</h2>
         <Link to={`/app/group/${group._id}/edit`} className="btn btn-ghost">
