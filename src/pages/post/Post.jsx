@@ -61,7 +61,7 @@ export default function Post() {
 
   return (
     <>
-      <div className="rounded-2xl bg-base-100 p-4 shadow">
+      <div className="rounded-box bg-base-100 p-4 shadow">
         <div className="flex justify-between">
           <UserAvatar
             url={postData.author.profilePicture}
