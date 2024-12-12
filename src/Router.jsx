@@ -5,7 +5,7 @@ import AuthRoute from './components/AuthRoute.jsx';
 import ThemeSwitcher from './components/ThemeSwitcher.jsx';
 
 import Layout from './components/Layout.jsx';
-import Landing from './pages/Landing.jsx';
+import Landing from './pages/landing/Landing.jsx';
 import About from './pages/About.jsx';
 import SignUp from './pages/SignUp.jsx';
 import SignIn from './pages/SignIn.jsx';
@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import Home from './pages/home/Home.jsx';
 import Profile from './pages/Profile.jsx';
-import Settings from './pages/settings/Settings.jsx'
+import Settings from './pages/settings/Settings.jsx';
 import Search from './pages/search/Search.jsx';
 import CreateGroup from './pages/CreateGroup.jsx';
 

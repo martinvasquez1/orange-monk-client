@@ -4,8 +4,6 @@ import Sidebar from './Sidebar';
 import Logo from './Logo';
 
 const links = [
-  { text: 'Home', to: '/' },
-  { text: 'About', to: '/about' },
   { text: 'Sign in', to: '/sign-in' },
   { text: 'Sign up', to: '/sign-up' },
 ];
@@ -16,7 +14,7 @@ export default function Navbar() {
       <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar w-full bg-base-300">
+        <div className="navbar w-full">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-1"
@@ -44,7 +42,7 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden flex-none lg:block">
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal gap-4">
               {links.map((link) => (
                 <li key={link.text}>
                   <Link to={link.to}>{link.text}</Link>

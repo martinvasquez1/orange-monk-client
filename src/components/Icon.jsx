@@ -7,7 +7,7 @@ const iconStyles = cva([''], {
     size: {
       small: ['1.0em'],
       medium: ['1.5em'],
-      large: ['2.5em'],
+      large: ['2.0em'],
     },
   },
   defaultVariants: {

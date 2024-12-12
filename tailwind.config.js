@@ -3,8 +3,14 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   safelist: ['text-primary', 'text-secondary', 'text-accent', 'text-success'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        crimson: ['Crimson Pro', 'serif'],
+        roboto: ['Roboto', 'sans-serif'],
+      },
+    },
   },
+
   plugins: [require('daisyui')],
   daisyui: {
     themes: [

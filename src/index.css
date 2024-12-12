@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 body *:not(a) {
   @apply transition-colors duration-300;
 }
