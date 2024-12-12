@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getGroup } from './../../api/groups';
+import { getGroup, getIsAdmin } from './../../api/groups';
+import { jwtDecode } from 'jwt-decode';
 
 import { useParams } from 'react-router-dom';
 import PublicAbout from './PublicAbout';
@@ -8,21 +9,31 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default function GroupAbout() {
   const { groupId } = useParams();
+  const userId = jwtDecode(localStorage.getItem('jwt')).id;
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['groups', groupId],
     queryFn: () => getGroup(groupId),
   });
 
-  if (isLoading) return <LoadingIndicator />;
-  if (isError) return <p>Error!</p>;
+  const {
+    data: dataRol,
+    isLoading: isLoadingRol,
+    isError: isErrorRol,
+  } = useQuery({
+    queryKey: ['groups', groupId, 'isAdmin'],
+    queryFn: () => getIsAdmin(groupId, userId),
+  });
+
+  if (isLoading || isLoadingRol) return <LoadingIndicator />;
+  if (isError || isErrorRol) return <p>Error!</p>;
 
   const group = data.data.group;
 
   return (
     <div className="flex flex-col gap-4">
       <PublicAbout group={group} />
-      <DeleteSection group={group} />
+      {dataRol.isAdmin && <DeleteSection group={group} />}
     </div>
   );
 }

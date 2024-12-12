@@ -82,3 +82,9 @@ export function leaveGroup({ id, userId }) {
     .delete(`groups/${id}/leave`, { data: { userId: userId } })
     .then((res) => res.data);
 }
+
+export function getIsAdmin(id, userId) {
+  return axiosInstance
+    .get(`groups/${id}/isAdmin`, { params: { userId } })
+    .then((res) => res.data);
+}
